@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FFA006;
+  background-image: url('../img/bg-transparent.png');
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#find-brand {
+  margin-top: 25px;
+  background-color: rgba(121, 62, 18, 0.59);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  width: 97%;
+}
+
+#find-brand form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#find-brand form label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  color: #FFF;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 6px;
+}
+
+#find-brand form #text-brand {
+  font-family: 'Roboto', sans-serif;
+  outline: none;
+  background: #E5E5E5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 60px;
+  border: none;
+  font-size: 24px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 300;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  width: 97%;
+  margin-bottom: 15px;
+}
+
+#text-brand::placeholder {
+  font-style: italic;
+}
+
+#list-brands {
+  margin-top: 70px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#list-brands .brand {
+  display: flex;
+  flex-direction: column;
+  width: 16.66%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.brand img {
+  border-radius: 20px;
+}
+
+.brand span {
+  margin-top: 10px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #000;
+  font-size: 24px;
+}
