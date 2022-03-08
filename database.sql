@@ -14,7 +14,7 @@ CREATE TABLE users(
 CREATE TABLE users_permissions(
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   is_admin TINYINT(4) NOT NULL,
-  `user_id` INT,
+  `user_id` INT NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -25,7 +25,7 @@ CREATE TABLE brands(
   picture VARCHAR(255),
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  brands_id INT
+  brands_id INT NOT NULL
 );
 
 CREATE TABLE cars(
@@ -33,7 +33,7 @@ CREATE TABLE cars(
   name_car VARCHAR(255) NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  brands_id INT
+  brands_id INT NOT NULL
 );
 
 CREATE TABLE cylinder_head(
@@ -50,8 +50,8 @@ CREATE TABLE cylinder_head(
 
 CREATE TABLE cars_cylinder_head(
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  cars_id INT,
-  cylinder_head_id INT
+  cars_id INT NOT NULL,
+  cylinder_head_id INT NOT NULL
 );
 
 ALTER TABLE `users_permissions`
