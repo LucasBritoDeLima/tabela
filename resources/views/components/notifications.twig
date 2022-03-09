@@ -1,0 +1,11 @@
+{% if flash.getMessage('error') %}
+  <div style="background-color: #d9534f; font-weight: bold; text-align: center; color: white">
+    {{ flash.getFirstMessage('error') }}
+  </div>
+{% endif %}
+
+{% if flash.getMessage('success') %}
+  <div style="background-color: #5cb85c; font-weight: bold; text-align: center; color: white">
+    {{ flash.getFirstMessage('success') }}
+  </div>
+{% endif %}

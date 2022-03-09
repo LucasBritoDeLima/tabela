@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/register.css" />
+  <title>Registrar usuário</title>
+</head>
+<body>
+    <img src="{{ base_url() }}/img/logo-superior.png"/>
+  <div id="login-box">
+    <form method="POST" action="">
+      <h3>Registre-se</h3>
+      <input type="text" name="user" id="" class="field {{ errors.user ? 'is-danger' : '' }}" placeholder="Nome de usuário">
+      {% if errors.user %}
+      <small style="color: #DC3545">{{ errors.user }}</small>
+      {% endif %}
+      <input type="email" name="email" id="" class="field {{ errors.email ? 'is-danger' : '' }}" placeholder="E-mail">
+      {% if errors.email %}
+      <small style="color: #DC3545">{{ errors.email |first }}</small>
+      {% endif %}
+      <input type="password" name="password" id="" class="field {{ errors.password ? 'is-danger' : '' }}" placeholder="Senha">
+      <input type="password" name="password2" id="" class="field {{ errors.password ? 'is-danger' : '' }}" placeholder="Confirme a senha">
+      {% if errors.password %}
+      <small style="color: #DC3545">{{ errors.password |first }}</small>
+      {% endif %}
+      <input type="submit" value="Registrar" class="login-button">
+    </form>
+  </div>
+</body>
+</html>
