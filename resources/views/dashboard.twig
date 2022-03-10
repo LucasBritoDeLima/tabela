@@ -17,6 +17,7 @@
       <img src="{{ base_url() }}/img/perfil.jpg" alt="Imagem-do-usuário">
     </figure>
     <h5>{{ auth.user.username }}</h5>
+    <small><a href="{{ path_for('auth.logout') }}">Sair</a></small>
   </aside>
   <main id="content">
     <h2>Aplicativos Cabeçote 100%</h2>

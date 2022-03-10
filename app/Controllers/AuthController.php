@@ -44,4 +44,11 @@ class AuthController extends Controller {
 
       return $response->withRedirect($this->container->router->pathFor('auth.login'));
   }
+
+  public function logout($request, $response){
+    if(isset($_SESSION['user'])) {
+      unset($_SESSION['user']);
+      return $response->withRedirect($this->container->router->pathFor('home'));
+    }
+  }
 }
