@@ -11,6 +11,14 @@ class AuthController extends Controller {
   public function login($request, $response) {
     if($request->isGet())
       return $this->container->view->render($response, 'index.twig');
+
+    if(!$this->container->auth->attempt(
+      $request->getParam('email'),
+      $request->getParam('password'))){
+        return $response->withRedirect($this->container->router->pathFor('auth.login'));
+      }
+
+    return $response->withRedirect($this->container->router->pathFor('dashboard.home'));
   }
 
   public function register($request, $response) {

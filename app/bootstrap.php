@@ -37,6 +37,10 @@ $container['flash'] = function($container) {
   return new Slim\Flash\Messages;
 };
 
+$container['auth'] = function($container){
+  return new App\Auth\Auth($container);
+};
+
 $container['view'] = function($container) {
   
   $view = new Slim\Views\Twig(__DIR__ . "/../resources/views", [
@@ -50,6 +54,11 @@ $container['view'] = function($container) {
 
   $view->getEnvironment()->addGlobal('flash', $container->flash);
 
+  $view->getEnvironment()->addGlobal('auth', [
+    'check' => $container->auth->check(),
+    'user' => $container->auth->user(),
+  ]);
+
   return $view;
 };
 
@@ -61,6 +70,10 @@ $container['HomeController'] = function($container) {
 
 $container['AuthController'] = function($container) {
   return new App\Controllers\AuthController($container);
+};
+
+$container['DashboardController'] = function($container) {
+  return new App\Controllers\DashboardController($container);
 };
 
 $app->add(new App\Middleware\DisplayInputErrorsMiddleware($container));

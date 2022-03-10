@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="styles/dashboard.css" />
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/dashboard.css" />
   <title>Dashboard - Cabeçote 100%</title>
 </head>
 <body>
   <aside id="left-bar">
     <div id="date-hour">
-      <p>27/03/2022</p>
-      <p>HH:mm:ss</p>
+      <p>{{ "now"|date("d-m-Y", "America/Sao_Paulo") }}</p>
+      <p>{{ "now"|date("H:i:s") }}</p>
     </div>
     <figure>
-      <img src="images/perfil.jpg" alt="Imagem-do-usuário">
+      <img src="{{ base_url() }}/img/perfil.jpg" alt="Imagem-do-usuário">
     </figure>
-    <h5>Usuário</h5>
+    <h5>{{ auth.user.username }}</h5>
   </aside>
   <main id="content">
     <h2>Aplicativos Cabeçote 100%</h2>

@@ -10,12 +10,13 @@
 <body>
     <img src="{{ base_url() }}/img/logo-superior.png"/>
   <div id="login-box">
-    <form action="">
+    <form method="POST" action="">
       <h3>Login</h3>
-      <input type="text" name="" id="" class="field" placeholder="Usuário">
-      <input type="password" name="" id="" class="field" placeholder="Senha">
+      <input type="text" name="email" id="" class="field" placeholder="Usuário">
+      <input type="password" name="password" id="" class="field" placeholder="Senha">
       <input type="submit" value="Entrar" class="login-button">
       <a href="#">Esqueci a minha senha!!!</a>
+      {% include "components/notifications.twig" %}
     </form>
   </div>
 </body>
