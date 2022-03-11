@@ -65,3 +65,8 @@ h1{
   font-weight: bold;
   color: #FFF;
 }
+
+.text a {
+  text-decoration: none;
+  color: #FFF;
+}

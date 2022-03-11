@@ -76,6 +76,10 @@ $container['DashboardController'] = function($container) {
   return new App\Controllers\DashboardController($container);
 };
 
+$container['DashboardController'] = function($container) {
+  return new App\Controllers\DashboardController($container);
+};
+
 $app->add(new App\Middleware\DisplayInputErrorsMiddleware($container));
 
 require __DIR__ . "/routes.php";

@@ -4,32 +4,32 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="styles/app-options.css" />
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/app-options.css" />
   <title>Gerenciamento de Aplicativo</title>
 </head>
 <body>
-  <h1>Nome do Aplicativo</h1>
+  <h1>Tabela de Cabeçote</h1>
   <main id="options">
     <div class="option">
-      <img src="images/motor.jpg" alt="Funcionalidade">
+      <a href="{{ path_for('dashboard.app') }}"><img src="{{ base_url() }}/img/motor.jpg" alt="Funcionalidade"></a>
+      <div class="text">
+        <a href="{{ path_for('dashboard.app') }}">Titulo da Funcionalidade</a>
+      </div>
+    </div>
+    <div class="option">
+      <img src="{{ base_url() }}/img/motor.jpg" alt="Funcionalidade">
       <div class="text">
         Titulo da Funcionalidade
       </div>
     </div>
     <div class="option">
-      <img src="images/motor.jpg" alt="Funcionalidade">
+      <img src="{{ base_url() }}/img/motor.jpg" alt="Funcionalidade">
       <div class="text">
         Titulo da Funcionalidade
       </div>
     </div>
     <div class="option">
-      <img src="images/motor.jpg" alt="Funcionalidade">
-      <div class="text">
-        Titulo da Funcionalidade
-      </div>
-    </div>
-    <div class="option">
-      <img src="images/motor.jpg" alt="Funcionalidade">
+      <img src="{{ base_url() }}/img/motor.jpg" alt="Funcionalidade">
       <div class="text">
         Titulo da Funcionalidade
       </div>
