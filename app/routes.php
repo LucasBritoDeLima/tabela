@@ -11,4 +11,5 @@ $app->group('/auth', function($app){
 $app->group('/dashboard', function($app){
   $app->map(['GET', 'POST'], '/home', 'DashboardController:dashboard')->setName('dashboard.home');
   $app->map(['GET', 'POST'], '/app', 'DashboardController:app')->setName('dashboard.app');
+  $app->map(['GET', 'POST'], '/app/addBrand', 'DashboardController:appBrand')->setName('dashboard.appBrand');
 });
