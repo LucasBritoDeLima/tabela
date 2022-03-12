@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand.css">
+  <title>Adicionar Carro</title>
+</head>
+<body>
+  <section id="logo">
+    <img src="{{ base_url() }}/img/logo-superior.png" alt="logo-cabeçote100%">
+  </section>
+  <section id="title">
+    <h1>Adicionar Carro</h1>
+  </section>
+  <section id="form-brand">
+  <form action="#" method="POST">
+    <table>
+      <tr>
+        <td>Modelo Carro:</td>
+        <td><input type="text" class="brand-name"></td>
+      </tr>
+      <tr>
+        <td>Montadora:</td>
+        <td>
+          <select name="brands" id="brands" class="brand-name">
+            <option value="volkswagen">Volkswagen</option>
+            <option value="fiat">Fiat</option>
+          </select>
+        <td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="buttons" style="padding-top: 80px;">
+          <input type="reset" value="Reset" class="yellow">
+          <input type="submit" value="Salvar" class="green">
+        </td>
+      </tr>
+    </table>
+  </form>
+  </section>
+</body>
+</html>

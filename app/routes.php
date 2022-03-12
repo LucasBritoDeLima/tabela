@@ -13,4 +13,5 @@ $app->group('/dashboard', function($app){
   $app->map(['GET', 'POST'], '/app', 'DashboardController:app')->setName('dashboard.app');
   $app->map(['GET', 'POST'], '/app/addBrand', 'DashboardController:appBrand')->setName('dashboard.appBrand');
   $app->map(['GET', 'POST'], '/app/addHead', 'DashboardController:appHead')->setName('dashboard.appHead');
+  $app->map(['GET', 'POST'], '/app/addCar', 'DashboardController:appCar')->setName('dashboard.appCar');
 });
