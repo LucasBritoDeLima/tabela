@@ -20,6 +20,10 @@ class DashboardController extends Controller {
     return $this->container->view->render($response, 'edit-head.twig');
   }
 
+  public function appHeadAdd($request, $response) {
+    return $this->container->view->render($response, 'add-head.twig');
+  }
+
   public function appCar($request, $response) {
     return $this->container->view->render($response, 'add-car.twig');
   }
