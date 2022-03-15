@@ -28,4 +28,8 @@ class DashboardController extends Controller {
     return $this->container->view->render($response, 'add-car.twig');
   }
 
+  public function appCarEdit($request, $response) {
+    return $this->container->view->render($response, 'edit-car.twig');
+  }
+
 }
