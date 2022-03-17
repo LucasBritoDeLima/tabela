@@ -13,17 +13,21 @@
   </section>
   <section id="title">
     <h1>Adicionar Montadora</h1>
+    {% include "components/notifications.twig" %}
   </section>
   <section id="form-brand">
   <form action="" method="POST" enctype="multipart/form-data">
     <table>
       <tr>
         <td>Nome da Montadora:</td>
-        <td><input type="text" class="brand-name"></td>
+        <td><input type="text" class="brand-name" name="name"></td>
       </tr>
       <tr>
         <td>Ícone:</td>
-        <td><img src="https://via.placeholder.com/230.png" alt=""></td>
+        <td>
+          <img src="https://via.placeholder.com/230.png" alt="">
+          <input type="file" name="picture" accept="image/x-png,image/gif,image/jpeg">
+        </td>
       </tr>
       <tr>
         <td></td>
@@ -33,6 +37,7 @@
         </td>
       </tr>
     </table>
+    
   </form>
   </section>
 </body>

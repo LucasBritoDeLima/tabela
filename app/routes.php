@@ -11,7 +11,7 @@ $app->group('/auth', function($app){
 $app->group('/dashboard', function($app){
   $app->map(['GET', 'POST'], '/home', 'DashboardController:dashboard')->setName('dashboard.home');
   $app->map(['GET', 'POST'], '/app', 'DashboardController:app')->setName('dashboard.app');
-  $app->map(['GET', 'POST'], '/app/addBrand', 'DashboardController:appBrand')->setName('dashboard.appBrand');
+  $app->map(['GET', 'POST'], '/app/Montadora', 'BrandController:createBrand')->setName('dashboard.createBrand');
   $app->map(['GET', 'POST'], '/app/addBrandEdit', 'DashboardController:appBrandEdit')->setName('dashboard.appBrandEdit');
   $app->map(['GET', 'POST'], '/app/addHeadAdd', 'DashboardController:appHeadAdd')->setName('dashboard.appHeadAdd');
   $app->map(['GET', 'POST'], '/app/addHead', 'DashboardController:appHead')->setName('dashboard.appHead');

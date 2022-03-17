@@ -12,9 +12,9 @@ class DashboardController extends Controller {
     return $this->container->view->render($response, 'app-options.twig');
   }
 
-  public function appBrand($request, $response) {
+  /*public function appBrand($request, $response) {
     return $this->container->view->render($response, 'add-brand.twig');
-  }
+  }*/
 
   public function appBrandEdit($request, $response) {
     return $this->container->view->render($response, 'edit-brand.twig');

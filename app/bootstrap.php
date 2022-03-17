@@ -41,6 +41,8 @@ $container['auth'] = function($container){
   return new App\Auth\Auth($container);
 };
 
+$container['upload_directory'] = __DIR__ . '/../public/uploads';
+
 $container['view'] = function($container) {
   
   $view = new Slim\Views\Twig(__DIR__ . "/../resources/views", [
@@ -76,8 +78,8 @@ $container['DashboardController'] = function($container) {
   return new App\Controllers\DashboardController($container);
 };
 
-$container['DashboardController'] = function($container) {
-  return new App\Controllers\DashboardController($container);
+$container['BrandController'] = function($container) {
+  return new App\Controllers\BrandController($container);
 };
 
 $app->add(new App\Middleware\DisplayInputErrorsMiddleware($container));
