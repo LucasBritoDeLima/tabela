@@ -26,13 +26,11 @@ class BrandController extends Controller
         'name' => v::stringType()->notEmpty(),
       ]);
 
-
       if (empty($brandPicture)) {
         throw new Exception('Invalid Image');
       }
 
       $uploadedFile = $files['picture'];
-
 
       if($uploadedFile->getClientMediaType() == 'image/jpeg' || $uploadedFile->getClientMediaType() == 'image/png') {
         if ($validation->failed()){
