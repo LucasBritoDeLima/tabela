@@ -179,3 +179,17 @@ body {
 #table-result table tr .btn-align {
   text-align: right;
 }
+
+.file-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.file-input img {
+  width: 230px;
+  height: 230px;
+}
+
+.file-input .error {
+  color: #DC3545;
+}

@@ -4,6 +4,24 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="{{ base_url() }}/libs/jquery-validate/lib/jquery.js"></script>
+  <script src="{{ base_url() }}/libs/jquery-validate/dist/jquery.validate.js"></script>
+  <script src="{{ base_url() }}/libs/jquery-validate/dist/additional-methods.js"></script>
+  {% block js %}
+    <script>
+      $(document).ready(function() {
+        $('#brandForm').validate();
+          $('#file1').rules('add', {
+            required: true,
+            accept: "image/jpeg, image/pjpeg, image/png",
+            messages: {
+            accept: "Formato inválido",
+            required: "O campo é obrigatório"
+          }
+      });
+    });
+    </script>
+  {% endblock %}
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand.css">
   <title>Adicionar Montadora</title>
 </head>
@@ -16,17 +34,17 @@
     {% include "components/notifications.twig" %}
   </section>
   <section id="form-brand">
-  <form action="" method="POST" enctype="multipart/form-data">
+  <form action="" method="POST" enctype="multipart/form-data" id="brandForm">
     <table>
       <tr>
         <td>Nome da Montadora:</td>
-        <td><input type="text" class="brand-name" name="name"></td>
+        <td><input type="text" class="brand-name" name="name" required></td>
       </tr>
       <tr>
-        <td>Ícone:</td>
-        <td>
+        <td class="form-group">Ícone:</td>
+        <td class="file-input">
           <img src="https://via.placeholder.com/230.png" alt="">
-          <input type="file" name="picture" accept="image/x-png,image/gif,image/jpeg">
+          <input type="file" name="picture" accept="image/x-png,image/gif,image/jpeg" id="file1">
         </td>
       </tr>
       <tr>
