@@ -1,11 +1,13 @@
 {% if flash.getMessage('error') %}
-  <div style="background-color: #d9534f; font-weight: bold; text-align: center; color: white">
+  <div class="notification error" id="danger">
     {{ flash.getFirstMessage('error') }}
+    <span id="closeError" onclick="closeBox('danger')">X</span>
   </div>
 {% endif %}
 
 {% if flash.getMessage('success') %}
-  <div style="background-color: #5cb85c; font-weight: bold; text-align: center; color: white">
+  <div class="notification success" id="success">
     {{ flash.getFirstMessage('success') }}
+    <span id="close" onclick="closeBox('success');">X</span>
   </div>
 {% endif %}
