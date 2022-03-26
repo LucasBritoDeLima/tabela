@@ -38,8 +38,7 @@ class BrandController extends Controller
         }
           Brand::create([
             'name' => $request->getParam('name'),
-            'picture' => $filename,
-            'brands_id' => 1
+            'picture' => $filename
           ]);
       } else {
         $this->container->flash->addMessage('error', 'Escolha um formato de arquivo válido');

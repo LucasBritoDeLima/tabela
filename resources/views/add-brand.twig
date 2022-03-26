@@ -44,8 +44,9 @@
       <tr>
         <td class="form-group">Ícone:</td>
         <td class="file-input">
-          <img src="https://via.placeholder.com/230.png" alt="">
-          <input type="file" name="picture" accept="image/x-png,image/gif,image/jpeg" id="file1">
+          <img src="https://via.placeholder.com/230.png" alt="" id="brand">
+          <input type="file" name="picture" accept="image/x-png,image/gif,image/jpeg" id="file1" class="file1">
+          <label for="file1" class="fileChoose">Selecione um arquivo</label>
         </td>
       </tr>
       <tr>
@@ -60,5 +61,6 @@
   </form>
   </section>
 <script src="{{ base_url() }}/js/notifications.js"></script>
+<script src="{{ base_url() }}/js/img_upload.js"></script>
 </body>
 </html>
