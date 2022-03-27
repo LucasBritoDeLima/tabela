@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Brand;
+use Illuminate\Support\Facades\DB;
 use Respect\Validation\Validator as v;
 use Slim\Http\UploadedFile;
 use Exception;
@@ -64,5 +65,21 @@ class BrandController extends Controller
     $filename = sprintf('%s.%0.8s', $basename, $extension);
     $uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
     return $filename;
+  }
+
+  public function getBrand($request, $response) {
+    $data = [
+      'brands' => Brand::all()
+    ];
+    $dataToJSON = json_encode($data);
+    $response->withJson($data);
+    return $response->withJson($data);
+  }
+
+  public function editBrand($request, $response) {
+    if ($request->isGet())
+      return $this->container->view->render($response, 'edit-brand.twig', $data = [
+        'brands' => Brand::all()
+      ]);
   }
 }

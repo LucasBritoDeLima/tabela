@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="{{ base_url() }}/libs/jquery-validate/lib/jquery.js"></script>
+  <script src="{{ base_url() }}/libs/jquery-validate/dist/jquery.validate.js"></script>
+  <script src="{{ base_url() }}/libs/jquery-validate/dist/additional-methods.js"></script>
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand.css">
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/notifications.css">
   <title>Editar Montadora</title>
 </head>
 <body>
@@ -20,10 +24,10 @@
       <tr>
         <td>Nome da Montadora:</td>
         <td>
-          <select name="Montadoras" id="" class="brand-name">
-            <option value="">Montadora 1</option>
-            <option value="">Montadora 2</option>
-            <option value="">Montadora 3</option>
+          <select name="Montadoras" id="" class="brand-name" onchange="getMarcas()">
+            {% for brand in brands %}
+              <option value="{{ brand.name }}">{{brand.name}}</option>
+            {% endfor %}
           </select>
         </td>
       </tr>
@@ -45,5 +49,13 @@
     </table>
   </form>
   </section>
+
+  <pre>
+    {{ brands }}
+    </pre>
+
+<script src="{{ base_url() }}/js/notifications.js"></script>
+<script src="{{ base_url() }}/js/img_upload.js"></script>
+<script src="{{ base_url() }}/js/getBrands.js"></script>
 </body>
 </html>

@@ -16,9 +16,9 @@ class DashboardController extends Controller {
     return $this->container->view->render($response, 'add-brand.twig');
   }*/
 
-  public function appBrandEdit($request, $response) {
+  /*public function appBrandEdit($request, $response) {
     return $this->container->view->render($response, 'edit-brand.twig');
-  }
+  }*/
 
   public function appHead($request, $response) {
     return $this->container->view->render($response, 'edit-head.twig');
