@@ -24,7 +24,7 @@
       <tr>
         <td>Nome da Montadora:</td>
         <td>
-          <select name="Montadoras" id="" class="brand-name" onchange="getMarcas()">
+          <select name="Montadoras" id="BrandOption" class="brand-name" onchange="getMarcas()">
             {% for brand in brands %}
               <option value="{{ brand.name }}">{{brand.name}}</option>
             {% endfor %}
@@ -33,14 +33,14 @@
       </tr>
       <tr>
         <td>Nome da Montadora:</td>
-        <td><input type="text" class="brand-name"></td>
+        <td><input type="text" class="brand-name" id="brandName"></td>
       </tr>
       <tr>
         <td>Ícone:</td>
-        <td><img src="https://via.placeholder.com/230.png" alt=""></td>
+        <td><img src="https://via.placeholder.com/230.png" alt="" id="iconBrand"></td>
       </tr>
       <tr>
-        <td></td>
+        <td><input type="hidden" name="idBrand" id="idBrand"></td>
         <td class="buttons">
           <input type="reset" value="Reset" class="yellow">
           <input type="submit" value="Salvar" class="green">
@@ -49,10 +49,6 @@
     </table>
   </form>
   </section>
-
-  <pre>
-    {{ brands }}
-    </pre>
 
 <script src="{{ base_url() }}/js/notifications.js"></script>
 <script src="{{ base_url() }}/js/img_upload.js"></script>

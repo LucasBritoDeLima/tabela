@@ -44,13 +44,7 @@ class BrandController extends Controller
       } else {
         $this->container->flash->addMessage('error', 'Escolha um formato de arquivo válido');
       }
-
-      /*Brand::create([
-        'name' => $request->getParam('name'),
-        'picture' => $filename,
-        'brands_id' => 1
-      ]);*/
-
+      
       $this->container->flash->addMessage('success', 'Dados enviados com sucesso!');
     } else {
       $this->container->flash->addMessage('error', 'Houve um erro ao processar a requisição!');
@@ -71,8 +65,6 @@ class BrandController extends Controller
     $data = [
       'brands' => Brand::all()
     ];
-    $dataToJSON = json_encode($data);
-    $response->withJson($data);
     return $response->withJson($data);
   }
 
