@@ -33,18 +33,18 @@ class BrandController extends Controller
 
       $uploadedFile = $files['picture'];
 
-      if($uploadedFile->getClientMediaType() == 'image/jpeg' || $uploadedFile->getClientMediaType() == 'image/png') {
-        if ($validation->failed()){
+      if ($uploadedFile->getClientMediaType() == 'image/jpeg' || $uploadedFile->getClientMediaType() == 'image/png') {
+        if ($validation->failed()) {
           return $response->withRedirect($this->container->router->pathFor('dashboard.createBrand'));
         }
-          Brand::create([
-            'name' => $request->getParam('name'),
-            'picture' => $filename
-          ]);
+        Brand::create([
+          'name' => $request->getParam('name'),
+          'picture' => $filename
+        ]);
       } else {
         $this->container->flash->addMessage('error', 'Escolha um formato de arquivo válido');
       }
-      
+
       $this->container->flash->addMessage('success', 'Dados enviados com sucesso!');
     } else {
       $this->container->flash->addMessage('error', 'Houve um erro ao processar a requisição!');
@@ -61,17 +61,47 @@ class BrandController extends Controller
     return $filename;
   }
 
-  public function getBrand($request, $response) {
+  public function getBrand($request, $response)
+  {
     $data = [
       'brands' => Brand::all()
     ];
     return $response->withJson($data);
   }
 
-  public function editBrand($request, $response) {
-    if ($request->isGet())
-      return $this->container->view->render($response, 'edit-brand.twig', $data = [
-        'brands' => Brand::all()
-      ]);
+  // public function editBrand($request, $response) {
+  //   if ($request->isGet())
+  //     return $this->container->view->render($response, 'edit-brand.twig', $data = [
+  //       'brands' => Brand::all()
+  //     ]);
+  // }
+
+  public function editBrand($request, $response, $params)
+  {
+    $data = [
+      'brands' => Brand::all()
+    ];
+    return $this->container->view->render($response, 'edit-brand.twig', $data);
+  }
+
+  public function editPostBrand($request, $response, $params)
+  {
+    $name = $request->getParam('name');
+    $id = $request->getParam('idBrand');
+    $directory = $this->container->upload_directory;
+    $brandPicture = $request->getUploadedFiles()['picture'];
+    $files = $request->getUploadedFiles();
+    if (empty($brandPicture)) {
+      throw new Exception('Invalid Image');
+    }
+
+    $uploadedFile = $files['picture'];
+
+    if (!$brandPicture->getError()) {
+      $filename = $this->moveUploadFile($directory, $brandPicture);
+      $brand = Brand::where('id',$id)
+      ->update(['name' => $name, 'picture' => $filename]);
+      return $response->withRedirect($this->container->router->pathFor('dashboard.createBrand'));
+    }
   }
 }

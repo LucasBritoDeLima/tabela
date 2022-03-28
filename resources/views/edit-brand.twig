@@ -7,6 +7,21 @@
   <script src="{{ base_url() }}/libs/jquery-validate/lib/jquery.js"></script>
   <script src="{{ base_url() }}/libs/jquery-validate/dist/jquery.validate.js"></script>
   <script src="{{ base_url() }}/libs/jquery-validate/dist/additional-methods.js"></script>
+  {% block js %}
+    <script>
+      $(document).ready(function() {
+        $('#brandForm').validate();
+          $('#file1').rules('add', {
+            required: true,
+            accept: "image/jpeg, image/pjpeg, image/png",
+            messages: {
+            accept: "Formato inválido",
+            required: "O campo é obrigatório"
+          }
+      });
+    });
+    </script>
+  {% endblock %}
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand.css">
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/notifications.css">
   <title>Editar Montadora</title>
@@ -17,9 +32,10 @@
   </section>
   <section id="title">
     <h1>Editar Montadora</h1>
+    {% include "components/notifications.twig" %}
   </section>
   <section id="form-brand">
-  <form action="#" method="POST">
+  <form action="{{ path_for('mudar') }}" method="POST" id="brandForm" enctype="multipart/form-data">
     <table>
       <tr>
         <td>Nome da Montadora:</td>
@@ -33,14 +49,18 @@
       </tr>
       <tr>
         <td>Nome da Montadora:</td>
-        <td><input type="text" class="brand-name" id="brandName"></td>
+        <td><input type="text" class="brand-name" id="brandName" name="name"></td>
       </tr>
       <tr>
-        <td>Ícone:</td>
-        <td><img src="https://via.placeholder.com/230.png" alt="" id="iconBrand"></td>
+        <td class="form-group">Ícone:</td>
+        <td class="file-input">
+          <img src="{{ base_url() }}/uploads/{{ brands[0].picture }}" alt="" id="brand">
+          <input type="file" name="picture" accept="image/x-png,image/gif,image/jpeg" id="file1" class="file1" value="{{ base_url() }}/uploads/{{ brands[0].picture }}">
+          <label for="file1" class="fileChoose">Selecione um arquivo</label>
+        </td>
       </tr>
       <tr>
-        <td><input type="hidden" name="idBrand" id="idBrand"></td>
+        <td><input type="hidden" name="idBrand" id="idBrand" value="{{ brands[0].id }}"></td>
         <td class="buttons">
           <input type="reset" value="Reset" class="yellow">
           <input type="submit" value="Salvar" class="green">
@@ -49,7 +69,7 @@
     </table>
   </form>
   </section>
-
+<pre>{{ brands }}</pre>
 <script src="{{ base_url() }}/js/notifications.js"></script>
 <script src="{{ base_url() }}/js/img_upload.js"></script>
 <script src="{{ base_url() }}/js/getBrands.js"></script>

@@ -8,7 +8,7 @@ function getMarcas() {
       if(optionElement.value === brands[i].name){
         $("#brandName").val(brands[i].name);
         $("#idBrand").val(brands[i].id);
-        $("#iconBrand").attr("src", "http://localhost:8000/uploads/" + brands[i].picture)
+        $("#brand").attr("src", "http://localhost:8000/uploads/" + brands[i].picture)
       }
     }
   });
