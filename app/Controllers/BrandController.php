@@ -91,17 +91,36 @@ class BrandController extends Controller
     $directory = $this->container->upload_directory;
     $brandPicture = $request->getUploadedFiles()['picture'];
     $files = $request->getUploadedFiles();
-    if (empty($brandPicture)) {
-      throw new Exception('Invalid Image');
-    }
-
-    $uploadedFile = $files['picture'];
-
+    
     if (!$brandPicture->getError()) {
       $filename = $this->moveUploadFile($directory, $brandPicture);
-      $brand = Brand::where('id',$id)
-      ->update(['name' => $name, 'picture' => $filename]);
-      return $response->withRedirect($this->container->router->pathFor('dashboard.createBrand'));
+
+      $validation = $this->container->validator->validate($request, [
+        'name' => v::stringType()->notEmpty(),
+        'idBrand' => v::notEmpty()
+      ]);
+
+      if (empty($brandPicture)) {
+        throw new Exception('Invalid Image');
+      }
+
+      $uploadedFile = $files['picture'];
+
+      if ($uploadedFile->getClientMediaType() == 'image/jpeg' || $uploadedFile->getClientMediaType() == 'image/png') {
+        if ($validation->failed()) {
+          return $response->withRedirect($this->container->router->pathFor('dashboard.appBrandEdit'));
+        }
+        Brand::where('id',$id)->update(['name' => $name, 'picture' => $filename]);
+      } else {
+        $this->container->flash->addMessage('error', 'Escolha um formato de arquivo válido');
+      }
+
+      $this->container->flash->addMessage('success', 'Dados enviados com sucesso!');
+    } else {
+      $this->container->flash->addMessage('error', 'Houve um erro ao processar a requisição!');
     }
+    return $response->withRedirect($this->container->router->pathFor('dashboard.appBrandEdit'));
   }
 }
+
+#Brand::where('id',$id)->update(['name' => $name, 'picture' => $filename]);
