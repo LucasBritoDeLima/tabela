@@ -5,6 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand.css">
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/notifications.css">
+  <script src="{{ base_url() }}/libs/jquery-validate/lib/jquery.js"></script>
+  <script src="{{ base_url() }}/libs/jquery-validate/dist/jquery.validate.js"></script>
+  <script src="{{ base_url() }}/libs/jquery-validate/dist/additional-methods.js"></script>
   <title>Adicionar Carro</title>
 </head>
 <body>
@@ -13,20 +17,22 @@
   </section>
   <section id="title">
     <h1>Adicionar Carro</h1>
+    {% include "components/notifications.twig" %}
   </section>
   <section id="form-brand">
-  <form action="#" method="POST">
+  <form action="" method="POST">
     <table>
       <tr>
         <td>Modelo Carro:</td>
-        <td><input type="text" class="brand-name"></td>
+        <td><input type="text" class="brand-name" name="car"></td>
       </tr>
       <tr>
         <td>Montadora:</td>
         <td>
           <select name="brands" id="brands" class="brand-name">
-            <option value="volkswagen">Volkswagen</option>
-            <option value="fiat">Fiat</option>
+            {% for brand in brands %}
+              <option value="{{ brand.id }}">{{brand.name}}</option>
+            {% endfor %}
           </select>
         <td>
       </tr>
@@ -40,5 +46,6 @@
     </table>
   </form>
   </section>
+<script src="{{ base_url() }}/js/notifications.js"></script>
 </body>
 </html>

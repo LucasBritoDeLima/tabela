@@ -5,10 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/notifications.css">
+  <script src="{{ base_url() }}/libs/jquery-validate/lib/jquery.js"></script>
+  <script src="{{ base_url() }}/libs/jquery-validate/dist/jquery.validate.js"></script>
+  <script src="{{ base_url() }}/libs/jquery-validate/dist/additional-methods.js"></script>
   <title>Login - Cabeçote 100%</title>
 </head>
 <body>
     <img src="{{ base_url() }}/img/logo-superior.png"/>
+    {% include "components/notifications.twig" %}
   <div id="login-box">
     <form method="POST" action="">
       <h3>Login</h3>
@@ -16,8 +21,8 @@
       <input type="password" name="password" id="" class="field" placeholder="Senha">
       <input type="submit" value="Entrar" class="login-button">
       <a href="#">Esqueci a minha senha!!!</a>
-      {% include "components/notifications.twig" %}
     </form>
   </div>
+  <script src="{{ base_url() }}/js/notifications.js"></script>
 </body>
 </html>
