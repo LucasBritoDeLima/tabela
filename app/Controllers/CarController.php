@@ -36,5 +36,22 @@ class CarController extends Controller {
     return $response->withRedirect($this->container->router->pathFor('car.createCar'));
   }
 
+  public function updateCar($request, $response) {
+
+    if($request->isGet())
+      return $this->container->view->render($response, 'edit-car.twig');
+
+    $validation = $this->container->validator->validate($request, [
+      'brand' => v::stringType()->notEmpty()
+    ]);
+
+    if($validation->failed()) {
+      $this->container->flash->addMessage('error', 'Houve um erro ao consultar a montadora');
+      return $response->withRedirect($this->container->router->pathFor('car.editCar'));
+    } else {
+      
+    }
+  }
+
 
 }
