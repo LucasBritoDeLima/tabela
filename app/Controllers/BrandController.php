@@ -69,6 +69,15 @@ class BrandController extends Controller
     return $response->withJson($data);
   }
 
+  public function getSingleBrand($request, $response) {
+
+    $term = $request->getParam('brand');
+    $data = [
+      'brand' => $this->container->capsule::select("SELECT `name` FROM brands WHERE `name` LIKE '%". $term . "%' ORDER BY `name` ASC")
+    ];
+    return $response->write(json_encode($data['brand']));
+  }
+
   // public function editBrand($request, $response) {
   //   if ($request->isGet())
   //     return $this->container->view->render($response, 'edit-brand.twig', $data = [

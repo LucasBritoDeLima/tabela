@@ -29,6 +29,14 @@ $capsule->addConnection($container['settings']['db']);
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
+$container['capsule'] = function($container){
+  $capsule = new \Illuminate\Database\Capsule\Manager;
+  $capsule->addConnection($container['settings']['db']);
+  $capsule->setAsGlobal();
+  $capsule->bootEloquent();
+  return $capsule;
+};
+
 $container['validator'] = function($container) {
   return new App\Validation\Validator;
 };

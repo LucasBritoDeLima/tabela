@@ -4,7 +4,27 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/libs/jquery-ui-1.13.1/jquery-ui.theme.css">
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand.css">
+  <style>
+    .ui-menu{
+      list-style: none;
+    }
+    .ui-menu .ui-menu-item div:hover{
+      background-color: #FFAA06;
+      border: 1px solid #FFAA06;
+      font-weight: 300;
+    }
+    .ui-menu-item div{
+      border-radius: 5px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      font-size: 20px;
+    }
+  </style>
+  <script src="{{ base_url() }}/libs/jquery-3.6.0.min.js"></script>
+  <script src="{{ base_url() }}/libs/jquery-ui-1.13.1/jquery-ui.min.js"></script>
+  <script src="{{ base_url() }}/js/search.js"></script>
   <title>Editar Veículo</title>
 </head>
 <body>
@@ -19,7 +39,7 @@
     <table style="margin: 0 auto; width: 95%;">
       <tr>
         <td style="width: 1%; vertical-align: middle;">Montadora:</td>
-        <td><input type="text" class="brand-name exception" placeholder="Volkswagen" name="brand"> <input type="submit" value="Ir" class="green btn-go"></td>
+        <td><input type="text" class="brand-name exception" placeholder="Volkswagen" name="brand" id="brandName"> <input type="submit" value="Ir" class="green btn-go"></td>
       </tr>
     </table>
   </form>

@@ -21,4 +21,5 @@ $app->group('/dashboard', function($app){
 });
 
 $app->get('/brands', 'BrandController:getBrand')->setName('getBrand');
+$app->get('/brand', 'BrandController:getSingleBrand')->setName('getSingleBrand');
 $app->post('/app/EditarMontadora/sim', 'BrandController:editPostBrand')->setName('mudar');
