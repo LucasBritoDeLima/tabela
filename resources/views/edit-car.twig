@@ -24,7 +24,6 @@
   </style>
   <script src="{{ base_url() }}/libs/jquery-3.6.0.min.js"></script>
   <script src="{{ base_url() }}/libs/jquery-ui-1.13.1/jquery-ui.min.js"></script>
-  <script src="{{ base_url() }}/js/search.js"></script>
   <title>Editar Veículo</title>
 </head>
 <body>
@@ -35,17 +34,17 @@
     <h1>Editar Veículo</h1>
   </section>
   <section id="form-brand" style="padding-bottom: 30px;">
-  <form action="" method="POST">
+  <form action="" method="GET" id="form-cars">
     <table style="margin: 0 auto; width: 95%;">
       <tr>
         <td style="width: 1%; vertical-align: middle;">Montadora:</td>
-        <td><input type="text" class="brand-name exception" placeholder="Volkswagen" name="brand" id="brandName"> <input type="submit" value="Ir" class="green btn-go"></td>
+        <td><input type="text" class="brand-name exception" placeholder="Volkswagen" name="name" id="brandName"> <input type="submit" value="Ir" class="green btn-go" id="sendButton"></td>
       </tr>
     </table>
   </form>
   <div id="table-result">
     <table>
-      <tr>
+      <!--<tr>
         <td class="title-car">GOL</td>
         <td class="btn-align">
           <button class="btn-edit">Editar</button>
@@ -100,9 +99,10 @@
           <button class="btn-edit">Editar</button>
           <button class="btn-del">Apagar</button>
         </td>
-      </tr>
+      </tr>-->
     </table>
   </div>
-  </section>
+</section>
+<script src="{{ base_url() }}/js/search.js"></script>
 </body>
 </html>

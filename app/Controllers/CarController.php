@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\Brand;
+use App\Models\Car;
 use App\Controllers\Controller;
 use Respect\Validation\Validator as v;
-use App\Models\Car;
 
 class CarController extends Controller {
   
@@ -51,6 +51,19 @@ class CarController extends Controller {
     } else {
       
     }
+  }
+
+  public function findCarsById($request, $response){
+    
+    $nameBrand = $request->getParam("name");
+
+    $idBrand = $this->container->capsule::table('brands')->where('name', '=', $nameBrand)->first();
+
+    $returnIdBrand = $idBrand->id;
+
+    $namesCar = Car::where('brands_id', '=', $returnIdBrand)->get();
+
+    return $response->write(json_encode($namesCar));
   }
 
 
