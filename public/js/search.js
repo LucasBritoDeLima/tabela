@@ -1,13 +1,13 @@
 const formElement = document.querySelector('form');
 formElement.addEventListener('submit', event => {
   event.preventDefault();
-  console.log($("#brandName").val());
   let uri = "/car?name=" + $("#brandName").val();
   $.getJSON(uri, data => {
     let brands = [];
     $("#table-cars").empty();
+    console.log(typeof(data));
     $(data).each((key,value) => {
-      $("#table-cars").append(`<tr>
+        $("#table-cars").append(`<tr>
       <td class="title-car">${value.name_car}</td>
       <td class="btn-align">
         <button class="btn-edit">Editar</button>
@@ -15,6 +15,9 @@ formElement.addEventListener('submit', event => {
       </td>
       </tr>`);
     });
+  }).fail(() => {
+    $("#table-cars").empty();
+    $("#table-cars").append(`<h1 style='color: red'>Não existem dados para essa montadora!</h1>`)
   });
 });
 
