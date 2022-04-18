@@ -66,5 +66,21 @@ class CarController extends Controller {
     return $response->write(json_encode($namesCar));
   }
 
+  public function editCar($request, $response) {
+    $nameCar = $request->getParam("newName");
+    $id = $request->getParam("nameOriginal");
+
+    $validation = $this->container->validator->validate($request, [
+      'newName' => v::stringType()->notEmpty(),
+      'nameOriginal' => v::notEmpty()
+    ]);
+
+    if ($validation->failed()){
+      $this->container->flash->addMessage('error', 'Houve um erro ao processar a requisição!');
+    }
+    Car::where('id',$id)->update(['name_car' => $nameCar]);
+    $this->container->flash->addMessage('success', 'Nome do modelo de carro editado com sucesso!');
+  }
+
 
 }

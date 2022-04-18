@@ -288,6 +288,66 @@ hr{
   margin: 0 auto;
 }
 
+.modal h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1.5em;
+  color: #17181A;
+  margin-bottom: 5px;
+}
+
+.form-container {
+  padding-bottom: 10px;
+}
+
+#form-car-new {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#form-car-new .form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#form-car-new .form-container .item {
+  width: 22%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#form-car-new .form-container .item-text {
+  width: 78%;
+}
+
+.item span {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1.25em;
+}
+
+.item-text input[type=text] {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1.25em;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+.item-text {
+  display: flex;
+  align-items: center;
+}
+
+.item-text input[type=text]:read-only{
+  background-color: #e3e3e3;
+  border: 1px solid #000;
+  outline: none;
+  cursor: no-drop;
+}
+
 .active {
   display: flex;
 }

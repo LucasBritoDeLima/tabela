@@ -23,4 +23,5 @@ $app->group('/dashboard', function($app){
 $app->get('/brands', 'BrandController:getBrand')->setName('getBrand');
 $app->get('/brand', 'BrandController:getSingleBrand')->setName('getSingleBrand');
 $app->get('/car', 'CarController:findCarsById')->setName('getCars');
+$app->post('/app/edit-car', 'CarController:editCar')->setName('carEdit');
 $app->post('/app/EditarMontadora/sim', 'BrandController:editPostBrand')->setName('mudar');

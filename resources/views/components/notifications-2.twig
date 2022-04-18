@@ -1,0 +1,13 @@
+{% if flash.getMessage('error') %}
+  <div class="notification error" id="danger">
+    {{ flash.getFirstMessage('error') }}
+    <span id="closeError" onclick="closeBox('danger')">X</span>
+  </div>
+{% endif %}
+
+{% if flash.getMessage('success') %}
+  <div class="notification success" id="success">
+    {{ flash.getFirstMessage('success') }}
+    <span id="close" onclick="closeBox('success');">X</span>
+  </div>
+{% endif %}

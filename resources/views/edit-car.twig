@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,26 +8,33 @@
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/libs/jquery-ui-1.13.1/jquery-ui.theme.css">
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand-1.css">
   <style>
-    .ui-menu{
+    .ui-menu {
       list-style: none;
     }
-    .ui-menu .ui-menu-item div:hover{
+
+    .ui-menu .ui-menu-item div:hover {
       background-color: #FFAA06;
       border: 1px solid #FFAA06;
       font-weight: 300;
     }
-    .ui-menu-item div{
+
+    .ui-menu-item div {
       border-radius: 5px;
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
       font-size: 20px;
     }
-    .ui-helper-hidden-accessible { position: absolute; left: -9999px; }
+
+    .ui-helper-hidden-accessible {
+      position: absolute;
+      left: -9999px;
+    }
   </style>
   <script src="{{ base_url() }}/libs/jquery-3.6.0.min.js"></script>
   <script src="{{ base_url() }}/libs/jquery-ui-1.13.1/jquery-ui.min.js"></script>
   <title>Editar Veículo</title>
 </head>
+
 <body>
   <div class="overlay"></div>
   <section id="logo">
@@ -36,35 +44,55 @@
     <h1>Editar Veículo</h1>
   </section>
   <section id="form-brand" style="padding-bottom: 30px;">
-  <form action="#" method="GET" id="form-cars">
-    <table style="margin: 0 auto; width: 95%;">
-      <tr>
-        <td style="width: 1%; vertical-align: middle;">Montadora:</td>
-        <td>
-          <input type="text" class="brand-name exception" placeholder="Volkswagen" name="name" id="brandName">
-          <input type="submit" value="Ir" class="green btn-go" id="sendButton">
-        </td>
-      </tr>
-    </table>
-  </form>
-  <div id="table-result">
-    <table id="table-cars">
-    </table>
-  </div>
-</section>
+    <form action="#" method="GET" id="form-cars">
+      <table style="margin: 0 auto; width: 95%;">
+        <tr>
+          <td style="width: 1%; vertical-align: middle;">Montadora:</td>
+          <td>
+            <input type="text" class="brand-name exception" placeholder="Volkswagen" name="name" id="brandName">
+            <input type="submit" value="Ir" class="green btn-go" id="sendButton">
+          </td>
+        </tr>
+      </table>
+    </form>
+    <div id="table-result">
+      <table id="table-cars">
+      </table>
+    </div>
+  </section>
 
-<div class="modal-container">
-  <div class="modal">
-    <h2>Info</h2>
-    <hr>
-    <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci aperiam officiis, nobis unde natus incidunt esse at odit voluptatem veniam illo minima quam. Quis blanditiis voluptatibus iure, ipsa quo numquam.</span>
-    <hr>
-    <div class="btns">
-      <button class="btnOK" onclick="closeModal()">Ok</button>
-      <button class="btnClose" onclick="closeModal()">Close</button>
+  <div class="modal-container">
+    {% include "components/notifications-2.twig" %}
+    <div class="modal">
+      <h2>Editar Veículo</h2>
+      <hr>
+      <form action="" method="POST" id="form-car-new">
+        <div class="form-container">
+          <div class="item">
+            <span>Nome Original:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" value="" name="oldName" id="oldName" readonly>
+          </div>
+          <div class="item">
+            <span>Novo Nome:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" name="newName" id="newName" value="" required>
+            <input type="hidden" name="nameOriginal" id="nameOriginal">
+          </div>
+        </div>
+        <hr>
+        <div class="btns">
+          <button class="btnOK" id="btn-send" onclick="sendData()">Salvar</button>
+          <button class="btnClose" onclick="closeModal()">Close</button>
+        </div>
+      </form>
     </div>
   </div>
-</div>
-<script src="{{ base_url() }}/js/search.js"></script>
+
+  <script src="{{ base_url() }}/js/search.js"></script>
+  <script src="{{ base_url() }}/js/notifications.js"></script>
 </body>
+
 </html>
