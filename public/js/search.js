@@ -16,6 +16,11 @@ function closeModal() {
   $(this).css({ "z-index": 1 });
 }
 
+function waitTime(){
+  $("#table-cars").empty();
+  closeModal();
+}
+
 function sendData(){
   let id = document.getElementById("nameOriginal").value;
   let newName = document.getElementById("newName").value;
@@ -27,10 +32,13 @@ function sendData(){
       nameOriginal: id,
     },
     success: (res) => {
-      console.log(res + 'deu certo');
+      $("#message").empty();
+      $("#message").append(`<span class="message-ok"><b>Modelo editado com sucesso</b></span>`);
+      $("#message").fadeOut(3000);
+      const wait = setTimeout(waitTime, 500);
     },
     error: (error) => {
-      console.log(error + 'deu ruim');
+      alert("SÓ LAMENTO");
     }
   })
 }

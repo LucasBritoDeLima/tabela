@@ -62,7 +62,6 @@
   </section>
 
   <div class="modal-container">
-    {% include "components/notifications-2.twig" %}
     <div class="modal">
       <h2>Editar Veículo</h2>
       <hr>
@@ -81,6 +80,8 @@
             <input type="text" name="newName" id="newName" value="" required>
             <input type="hidden" name="nameOriginal" id="nameOriginal">
           </div>
+          <div class="item-text" id="message">
+          </div>
         </div>
         <hr>
         <div class="btns">
@@ -92,7 +93,6 @@
   </div>
 
   <script src="{{ base_url() }}/js/search.js"></script>
-  <script src="{{ base_url() }}/js/notifications.js"></script>
 </body>
 
 </html>
