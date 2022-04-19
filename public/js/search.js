@@ -43,6 +43,24 @@ function sendData(){
   })
 }
 
+
+$(document).on("click", ".btn-del", function(e){
+  e.preventDefault();
+  var id = $(this).attr("id");
+  var tr = $(this).closest("tr");
+  $.ajax({
+    url: "/app/delete-car",
+    method: "POST",
+    data: { id : id },
+    success: function(data) {
+        tr.fadeOut(1200, function(){
+          tr.remove();
+        });
+    }
+  })
+});
+
+
 const formElement = document.querySelector("form");
 formElement.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -51,11 +69,11 @@ formElement.addEventListener("submit", (event) => {
     let brands = [];
     $("#table-cars").empty();
     $(data).each((key, value) => {
-      $("#table-cars").append(`<tr>
+      $("#table-cars").append(`<tr class='car-row'>
       <td class="title-car">${value.name_car}</td>
       <td class="btn-align">
         <button class="btn-edit" onclick="openModal('${value.name_car}','${value.id}')">Editar</button>
-        <button class="btn-del">Apagar</button>
+        <button class="btn-del" id='${value.id}'>Apagar</button>
       </td>
       </tr>`);
     });
@@ -67,7 +85,7 @@ formElement.addEventListener("submit", (event) => {
   });
 });
 
-$(".btn-edit").on("click", () => {});
+
 
 $(() => {
   $.getJSON("/brand", (data) => {

@@ -82,5 +82,17 @@ class CarController extends Controller {
     $this->container->flash->addMessage('success', 'Nome do modelo de carro editado com sucesso!');
   }
 
+  public function deleteCar($request, $response) {
+    $idCar = $request->getParam("id");
+
+    $car = Car::find($idCar);
+    
+    if($car) {
+      $car->delete();
+    } else {
+      $this->container->flash->addMessage('danger', 'Erro: O carro não pode ser deletado!');
+    }
+  }
+
 
 }
