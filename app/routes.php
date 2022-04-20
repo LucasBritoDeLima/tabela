@@ -13,7 +13,7 @@ $app->group('/dashboard', function($app){
   $app->map(['GET', 'POST'], '/app', 'DashboardController:app')->setName('dashboard.app');
   $app->map(['GET', 'POST'], '/app/Montadora', 'BrandController:createBrand')->setName('dashboard.createBrand');
   $app->map(['GET', 'POST'], '/app/EditarMontadora', 'BrandController:editBrand')->setName('dashboard.appBrandEdit');
-  $app->map(['GET', 'POST'], '/app/addHeadAdd', 'DashboardController:appHeadAdd')->setName('dashboard.appHeadAdd');
+  $app->map(['GET', 'POST'], '/app/addHeadAdd', 'HeadController:addHead')->setName('dashboard.appHeadAdd');
   $app->map(['GET', 'POST'], '/app/addHead', 'DashboardController:appHead')->setName('dashboard.appHead');
   $app->map(['GET', 'POST'], '/app/addCar', 'CarController:createCar')->setName('car.createCar');
   $app->map(['GET', 'POST'], '/app/EditCar', 'CarController:updateCar')->setName('car.editCar');

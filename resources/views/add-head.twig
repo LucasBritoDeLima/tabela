@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="{{ base_url() }}/libs/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand.css">
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/notifications.css">
   <title>Adicionar Cabeçote</title>
 </head>
 <body>
@@ -13,33 +15,38 @@
   </section>
   <section id="title">
     <h1>Adicionar Cabeçote</h1>
+    {% include "components/notifications.twig" %}
   </section>
   <section id="form-brand">
-  <form action="#" method="POST">
+  <form action="" method="POST">
     <table>
       <tr>
         <td>Modelo Motor/Cabeçote:</td>
-        <td><input type="text" class="brand-name"></td>
+        <td><input type="text" class="brand-name" name="engine-name" required></td>
       </tr>
       <tr>
         <td>Combustível:</td>
-        <td><input type="text" class="brand-name"></td>
+        <td><input type="text" class="brand-name" name="fuel" required></td>
       </tr>
       <tr>
         <td>Material:</td>
-        <td><input type="text" class="brand-name"></td>
+        <td><input type="text" class="brand-name" name="material" required></td>
       </tr>
       <tr>
         <td>Altura STD:</td>
-        <td><input type="text" class="brand-name"></td>
+        <td><input type="text" class="brand-name" name="height-std" required></td>
       </tr>
       <tr>
         <td>Altura Mínima:</td>
-        <td><input type="text" class="brand-name"></td>
+        <td><input type="text" class="brand-name" name="min-height" required></td>
+      </tr>
+      <tr>
+        <td>Observação:</td>
+        <td><input type="text" class="brand-name" name="observation"></td>
       </tr>
       <tr>
         <td></td>
-        <td class="buttons" style="padding-top: 80px;">
+        <td class="buttons" style="padding-top: 60px;">
           <input type="reset" value="Reset" class="yellow">
           <input type="submit" value="Salvar" class="green">
         </td>
@@ -47,5 +54,7 @@
     </table>
   </form>
   </section>
+
+<script src="{{ base_url() }}/js/notifications.js"></script>
 </body>
 </html>

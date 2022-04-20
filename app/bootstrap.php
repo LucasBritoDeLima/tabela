@@ -94,6 +94,10 @@ $container['CarController'] = function($container) {
   return new App\Controllers\CarController($container);
 };
 
+$container['HeadController'] = function($container) {
+  return new App\Controllers\HeadController($container);
+};
+
 $app->add(new App\Middleware\DisplayInputErrorsMiddleware($container));
 
 require __DIR__ . "/routes.php";
