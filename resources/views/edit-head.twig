@@ -5,9 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand.css">
+  <script src="{{ base_url() }}/libs/jquery-3.6.0.min.js"></script>
   <title>Editar Cabeçote</title>
 </head>
 <body>
+  <div class="overlay"></div>
   <section id="logo">
     <img src="{{ base_url() }}/img/logo-superior.png" alt="logo-cabeçote100%">
   </section>
@@ -18,16 +20,17 @@
   <form action="#" method="POST">
     <table style="margin: 0 auto; width: 95%;">
       <tr>
-        <td style="width: 1%; vertical-align: middle;">Montadora:</td>
-        <td><input type="text" class="brand-name exception" placeholder="Volkswagen"> <input type="submit" value="Ir" class="green btn-go"></td>
+        <td style="width: 1%; vertical-align: middle;">Cabeçote:</td>
+        <td><input type="text" class="brand-name exception" placeholder="Digite o modelo do motor ou cabeçote" id="cabecote"> <input type="submit" value="Ir" class="green btn-go"></td>
       </tr>
     </table>
   </form>
   <div id="table-result">
-    <table>
-      <tr>
+    <table id="table-heads">
+      <!--<tr>
         <td class="title-car">GOL</td>
         <td class="btn-align">
+          <button class="btn-info">Info</button>
           <button class="btn-edit">Editar</button>
           <button class="btn-del">Apagar</button>
         </td>
@@ -80,9 +83,63 @@
           <button class="btn-edit">Editar</button>
           <button class="btn-del">Apagar</button>
         </td>
-      </tr>
+      </tr>-->
     </table>
   </div>
   </section>
+
+  <div class="modal-container">
+    <div class="modal">
+      <h2>Cabeçote <span id="head-span"></span></h2>
+      <hr>
+      <form action="#" method="POST" id="form-car-new">
+        <div class="form-container">
+          <div class="item">
+            <span>Cabeçote:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="name-head" readonly>
+          </div>
+          <div class="item">
+            <span>Combustivel:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="head-fuel" readonly>
+          </div>
+          <div class="item">
+            <span>Material:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="material-head" readonly>
+          </div>
+          <div class="item">
+            <span>ALTURA STD:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="std-head" readonly>
+          </div>
+          <div class="item">
+            <span>ALTURA MIN:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="min-head" readonly>
+          </div>
+          <div class="item">
+            <span>Observation:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="obs-head" readonly>
+          </div>
+        </div>
+        <hr>
+        <div class="btns">
+          <!--<button class="btnOK" id="btn-send" onclick="sendData()">Salvar</button>-->
+          <button class="btnClose" onclick="closeModal()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="{{ base_url() }}/js/heads.js"></script>
 </body>
 </html>

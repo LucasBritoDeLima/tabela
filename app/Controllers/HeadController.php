@@ -38,6 +38,12 @@ class HeadController extends Controller {
 
     $this->container->flash->addMessage('success', 'Cabeçote adicionado com sucesso!');
     return $response->withRedirect($this->container->router->pathFor('dashboard.appHeadAdd'));
+  }
 
+  public function allHeads($request, $response) {
+    $data = [
+      'heads' => Head::all()
+    ];
+    return $response->withJson($data);
   }
 }
