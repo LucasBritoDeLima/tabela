@@ -306,6 +306,69 @@ hr{
   padding-bottom: 10px;
 }
 
+#form-edit-head {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#form-edit-head .form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#form-edit-head .form-container .item {
+  width: 22%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#form-edit-head .form-container .item-text {
+  width: 78%;
+}
+
+#form-edit-head {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#form-edit-head .form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#form-edit-head .form-container .item {
+  width: 22%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#form-edit-head .form-container .item-text {
+  width: 78%;
+}
+
+#form-car-new {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#form-car-new .form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#form-car-new .form-container .item {
+  width: 22%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#form-car-new .form-container .item-text {
+  width: 78%;
+}
+
 #form-car-new {
   margin-top: 10px;
   margin-bottom: 10px;

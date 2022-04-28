@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
   <script src="{{ base_url() }}/libs/jquery-3.6.0.min.js"></script>
   <title>Editar Cabeçote</title>
 </head>
+
 <body>
   <div class="overlay"></div>
   <section id="logo">
@@ -17,17 +19,18 @@
     <h1>Editar Cabeçote</h1>
   </section>
   <section id="form-brand" style="padding-bottom: 30px;">
-  <form action="#" method="POST">
-    <table style="margin: 0 auto; width: 95%;">
-      <tr>
-        <td style="width: 1%; vertical-align: middle;">Cabeçote:</td>
-        <td><input type="text" class="brand-name exception" placeholder="Digite o modelo do motor ou cabeçote" id="cabecote"> <input type="submit" value="Ir" class="green btn-go"></td>
-      </tr>
-    </table>
-  </form>
-  <div id="table-result">
-    <table id="table-heads">
-      <!--<tr>
+    <form action="#" method="POST">
+      <table style="margin: 0 auto; width: 95%;">
+        <tr>
+          <td style="width: 1%; vertical-align: middle;">Cabeçote:</td>
+          <td><input type="text" class="brand-name exception" placeholder="Digite o modelo do motor ou cabeçote"
+              id="cabecote"> <input type="submit" value="Ir" class="green btn-go"></td>
+        </tr>
+      </table>
+    </form>
+    <div id="table-result">
+      <table id="table-heads">
+        <!--<tr>
         <td class="title-car">GOL</td>
         <td class="btn-align">
           <button class="btn-info">Info</button>
@@ -84,11 +87,12 @@
           <button class="btn-del">Apagar</button>
         </td>
       </tr>-->
-    </table>
-  </div>
+      </table>
+    </div>
   </section>
 
-  <div class="modal-container">
+  <!-- Informações do cabeçote -->
+  <div class="modal-container" id="info-head">
     <div class="modal">
       <h2>Cabeçote <span id="head-span"></span></h2>
       <hr>
@@ -133,13 +137,71 @@
         </div>
         <hr>
         <div class="btns">
-          <!--<button class="btnOK" id="btn-send" onclick="sendData()">Salvar</button>-->
           <button class="btnClose" onclick="closeModal()">Close</button>
         </div>
       </form>
     </div>
   </div>
+  <!-- Fim de informações do cabeçote -->
+
+  <!-- Editar Cabeçote -->
+  <div class="modal-container" id="edit-head">
+    <div class="modal">
+      <h2>Cabeçote <span id="head-span"></span></h2>
+      <hr>
+      <form action="#" method="POST" id="form-edit-head">
+        <div class="form-container">
+          <div class="item">
+            <span>Cabeçote:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="edit-name-head" name="edit_name_head" required>
+          </div>
+          <div class="item">
+            <span>Combustivel:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="edit-head-fuel" name="edit_head_fuel" required>
+          </div>
+          <div class="item">
+            <span>Material:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="edit-material-head" name="edit_material_head" required>
+          </div>
+          <div class="item">
+            <span>ALTURA STD:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="edit-std-head" name="edit_std_head" required>
+          </div>
+          <div class="item">
+            <span>ALTURA MIN:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="edit-min-head" name="edit_min_head" required>
+          </div>
+          <div class="item">
+            <span>Observation:</span>
+          </div>
+          <div class="item-text">
+            <input type="text" id="edit-obs-head" name="edit_obs_head" required>
+            <input type="hidden" name="head_id" id="head-id">
+          </div>
+          <div class="item-text" id="message">
+          </div>
+        </div>
+        <hr>
+        <div class="btns">
+          <button class="btnOK" id="btn-send" onclick="sendData()">Salvar</button>
+          <button class="btnClose" onclick="closeModal()">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Fim de Editar Cabeçote -->
 
   <script src="{{ base_url() }}/js/heads.js"></script>
 </body>
+
 </html>

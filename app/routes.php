@@ -25,5 +25,7 @@ $app->get('/brand', 'BrandController:getSingleBrand')->setName('getSingleBrand')
 $app->get('/car', 'CarController:findCarsById')->setName('getCars');
 $app->get('/heads', 'HeadController:allHeads')->setName('getAllHeads');
 $app->post('/app/edit-car', 'CarController:editCar')->setName('carEdit');
+$app->post('/app/edit-head', 'HeadController:updateHeads')->setName('headEdit');
 $app->post('/app/delete-car', 'CarController:deleteCar')->setName('carDelete');
+$app->post('/app/delete-head', 'HeadController:deleteHead')->setName('headDelete');
 $app->post('/app/EditarMontadora/sim', 'BrandController:editPostBrand')->setName('mudar');

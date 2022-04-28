@@ -46,4 +46,52 @@ class HeadController extends Controller {
     ];
     return $response->withJson($data);
   }
+
+  public function updateHeads($request, $response) {
+
+    $idHead = $request->getParam('head_id');
+    $nameHead = $request->getParam('edit_name_head');
+    $fuelHead = $request->getParam('edit_head_fuel');
+    $materialHead = $request->getParam('edit_material_head');
+    $stdHead = $request->getParam('edit_std_head');
+    $minHead = $request->getParam('edit_min_head');
+    $obsHead = $request->getParam('edit_obs_head');
+
+    $validation = $this->container->validator->validate($request, [
+      'head_id' => v::stringType()->notEmpty(),
+      'edit_name_head' => v::stringType()->notEmpty(),
+      'edit_head_fuel' => v::stringType()->notEmpty(),
+      'edit_material_head' => v::stringType()->notEmpty(),
+      'edit_std_head' => v::stringType()->notEmpty(),
+      'edit_min_height' => v::stringType()->notEmpty(),
+      'edit_obs_head' => v::stringType()->notEmpty()
+    ]);
+
+    if ($validation->failed()){
+      $this->container->flash->addMessage('error', 'Houve um erro ao processar a requisição!');
+    }
+
+    Head::where('id', $idHead)->update([
+      'fuel' => $fuelHead,
+      'material_kind' => $materialHead,
+      'name_engine' => $nameHead,
+      'standard_height' => $stdHead,
+      'minimum_height' => $minHead,
+      'observation' => $obsHead
+    ]);
+
+    $this->container->flash->addMessage('success', 'Cabeçote atualizado com sucesso!');
+  }
+
+  public function deleteHead($request, $response) {
+    $idHead = $request->getParam("id");
+
+    $head = Head::find($idHead);
+    
+    if($head) {
+      $head->delete();
+    } else {
+      $this->container->flash->addMessage('danger', 'Erro: O cabeçote não pode ser apagado!');
+    }
+  }
 }
