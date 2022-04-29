@@ -94,4 +94,21 @@ class HeadController extends Controller {
       $this->container->flash->addMessage('danger', 'Erro: O cabeçote não pode ser apagado!');
     }
   }
+
+  public function searchLive($request, $response) {
+    $searchTerm = $request->getParam("search");
+
+    if($searchTerm) {
+      // $result = Head::where('name_engine', 'LIKE', '%'.$searchTerm.'%')->get();
+      $result = [
+        'heads' => $this->container->capsule::table('cylinder_head')->where('name_engine', 'LIKE', '%'.$searchTerm.'%')->get()
+      ];
+    } else {
+      $result = [
+        'heads' => Head::all()
+      ];
+    }
+
+    return $response->withJson($result);
+  }
 }
