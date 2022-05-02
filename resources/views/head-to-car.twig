@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand.css">
+  <script src="{{ base_url() }}/libs/jquery-3.6.0.min.js"></script>
   <title>Associar Veículo Ao Cabeçote</title>
 </head>
 <body>
@@ -15,12 +16,12 @@
     <h1>Associar Veículo Ao Cabeçote</h1>
   </section>
   <section id="form-brand">
-  <form action="#" method="POST">
+  <form action="" method="POST" id="forms">
     <table>
       <tr>
         <td>Nome da Montadora:</td>
-        <td>
-          <select name="Montadoras" id="" class="brand-name">
+        <td id="tdBrands" class="tam1">
+          <select name="Montadoras" id="brands" class="brand-name">
             <option value="">Montadora 1</option>
             <option value="">Montadora 2</option>
             <option value="">Montadora 3</option>
@@ -30,17 +31,15 @@
       <tr>
         <td>Modelo:</td>
         <td>
-          <select name="modelo" id="" class="brand-name">
-            <option value="">Modelo 1</option>
-            <option value="">Modelo 2</option>
-            <option value="">Modelo 3</option>
+          <select name="modelo" id="modelCars" class="brand-name">
+            <option value="null">-- Selecione uma montadora --</option>
           </select>
         </td>
       </tr>
       <tr>
         <td>Cabeçote</td>
         <td>
-          <select name="cabecote" id="" class="brand-name">
+          <select name="cabecote" id="cylinderHead" class="brand-name">
             <option value="">Cabeçote 1</option>
             <option value="">Cabeçote 2</option>
             <option value="">Cabeçote 3</option>
@@ -51,11 +50,12 @@
         <td></td>
         <td class="buttons">
           <input type="reset" value="Reset" class="yellow">
-          <input type="submit" value="Salvar" class="green">
+          <input type="submit" value="Salvar" class="green" id="btnSend">
         </td>
       </tr>
     </table>
   </form>
   </section>
+<script src="{{ base_url() }}/js/headCar.js"></script>
 </body>
 </html>

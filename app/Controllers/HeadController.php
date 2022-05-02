@@ -4,10 +4,14 @@ namespace App\Controllers;
 
 use Respect\Validation\Validator as v;
 use App\Models\Head;
+use App\Models\HeadCar;
+use Slim\Http\StatusCode;
 
-class HeadController extends Controller {
-  
-  public function addHead($request, $response){
+class HeadController extends Controller
+{
+
+  public function addHead($request, $response)
+  {
     if ($request->isGet())
       return $this->container->view->render($response, 'add-head.twig');
 
@@ -20,9 +24,9 @@ class HeadController extends Controller {
       'observation' => v::stringType(),
     ]);
 
-    if($validation->failed())
+    if ($validation->failed())
       return $response->withRedirect($this->container->router->pathFor('dashboard.appHeadAdd'));
-      /*echo "<pre>";
+    /*echo "<pre>";
       print_r($validation);
       echo "</pre>";
       die();*/
@@ -40,14 +44,16 @@ class HeadController extends Controller {
     return $response->withRedirect($this->container->router->pathFor('dashboard.appHeadAdd'));
   }
 
-  public function allHeads($request, $response) {
+  public function allHeads($request, $response)
+  {
     $data = [
       'heads' => Head::all()
     ];
     return $response->withJson($data);
   }
 
-  public function updateHeads($request, $response) {
+  public function updateHeads($request, $response)
+  {
 
     $idHead = $request->getParam('head_id');
     $nameHead = $request->getParam('edit_name_head');
@@ -67,7 +73,7 @@ class HeadController extends Controller {
       'edit_obs_head' => v::stringType()->notEmpty()
     ]);
 
-    if ($validation->failed()){
+    if ($validation->failed()) {
       $this->container->flash->addMessage('error', 'Houve um erro ao processar a requisição!');
     }
 
@@ -83,25 +89,27 @@ class HeadController extends Controller {
     $this->container->flash->addMessage('success', 'Cabeçote atualizado com sucesso!');
   }
 
-  public function deleteHead($request, $response) {
+  public function deleteHead($request, $response)
+  {
     $idHead = $request->getParam("id");
 
     $head = Head::find($idHead);
-    
-    if($head) {
+
+    if ($head) {
       $head->delete();
     } else {
       $this->container->flash->addMessage('danger', 'Erro: O cabeçote não pode ser apagado!');
     }
   }
 
-  public function searchLive($request, $response) {
+  public function searchLive($request, $response)
+  {
     $searchTerm = $request->getParam("search");
 
-    if($searchTerm) {
+    if ($searchTerm) {
       // $result = Head::where('name_engine', 'LIKE', '%'.$searchTerm.'%')->get();
       $result = [
-        'heads' => $this->container->capsule::table('cylinder_head')->where('name_engine', 'LIKE', '%'.$searchTerm.'%')->get()
+        'heads' => $this->container->capsule::table('cylinder_head')->where('name_engine', 'LIKE', '%' . $searchTerm . '%')->get()
       ];
     } else {
       $result = [
@@ -110,5 +118,34 @@ class HeadController extends Controller {
     }
 
     return $response->withJson($result);
+  }
+
+  public function headToCar($request, $response)
+  {
+    $carId = $request->getParam("carId");
+    $headId = $request->getParam("headId");
+
+    if ($carId == null || $carId === null || $carId == "null" || $carId === "null") {
+      return 'error';
+    } else {
+
+      $insert = HeadCar::create([
+        'cars_id' => $carId,
+        'cylinder_head_id' => $headId
+      ]);
+
+      if ($insert) {
+        $msg = [
+          "msg" => "Cabecote associado ao carro com sucesso",
+          "status" => "success"
+        ];
+        return utf8_encode(json_encode($msg));
+      } else {
+        return $msg = [
+          "msg" => "erro: não deu certo",
+          "status" => "danger"
+        ];
+      }
+    }
   }
 }

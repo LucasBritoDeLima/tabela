@@ -94,5 +94,37 @@ class CarController extends Controller {
     }
   }
 
+  public function getCarById($request, $response){
+    $brandId = $request->getParam("id");
+    
+    $data =  Car::where('brands_id', '=', $brandId)->get();
+
+    if(empty($data)){
+      $data = [
+        [
+          "id" => null,
+          "name_car" => "Não existem carros para esta montadora"
+        ]
+      ];
+    }else {
+      $data = $data;
+    }
+
+
+
+    // if($brandId != null) {
+    //   $data =  Car::where('brands_id', '=', $brandId)->get();
+    // }else{
+    //   $data = [
+    //     "cars" => [
+    //       "brands_id" => "null",
+    //       "name_car" => "Por favor tente mais tarde"
+    //     ]
+    //   ];
+    // }
+
+    return $response->withJson($data);
+  }
+
 
 }

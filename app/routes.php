@@ -23,6 +23,8 @@ $app->group('/dashboard', function($app){
 $app->get('/brands', 'BrandController:getBrand')->setName('getBrand');
 $app->get('/brand', 'BrandController:getSingleBrand')->setName('getSingleBrand');
 $app->get('/car', 'CarController:findCarsById')->setName('getCars');
+$app->post('/headtocar', 'HeadController:headToCar')->setName('setHeadCar');
+$app->post('/modelCar', 'CarController:getCarById')->setName('getModel');
 $app->get('/heads', 'HeadController:allHeads')->setName('getAllHeads');
 $app->post('/app/edit-car', 'CarController:editCar')->setName('carEdit');
 $app->post('/app/edit-head', 'HeadController:updateHeads')->setName('headEdit');
