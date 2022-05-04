@@ -26,6 +26,7 @@ $app->get('/car', 'CarController:findCarsById')->setName('getCars');
 $app->post('/headtocar', 'HeadController:headToCar')->setName('setHeadCar');
 $app->post('/modelCar', 'CarController:getCarById')->setName('getModel');
 $app->get('/heads', 'HeadController:allHeads')->setName('getAllHeads');
+$app->get('/jointwo', 'CarController:headJoinCar')->setName('getJoins');
 $app->post('/app/edit-car', 'CarController:editCar')->setName('carEdit');
 $app->post('/app/edit-head', 'HeadController:updateHeads')->setName('headEdit');
 $app->post('/app/delete-car', 'CarController:deleteCar')->setName('carDelete');

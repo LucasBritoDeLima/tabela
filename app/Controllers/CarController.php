@@ -126,5 +126,11 @@ class CarController extends Controller {
     return $response->withJson($data);
   }
 
+  public function headJoinCar($request, $response){
+    $data = $this->container->capsule::select('SELECT cylinder_head.id AS idHead, cylinder_head.name_engine AS cylinderHead, cars.id AS idCar, cars.name_car AS carName, cars_cylinder_head.id AS idJoin, cars_cylinder_head.visible AS isVisible FROM cylinder_head INNER JOIN cars ON (cylinder_head.id = cars.id) INNER JOIN cars_cylinder_head ON (cars.id = cylinder_head.id)');
+
+    return $response->withJson($data);
+  }
+
 
 }
