@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/add-brand.css">
+  <script src="{{ base_url() }}/libs/jquery-3.6.0.min.js"></script>
+  <title>Editar Associações</title>
+</head>
+
+<body>
+  <div class="overlay"></div>
+  <section id="logo">
+    <img src="{{ base_url() }}/img/logo-superior.png" alt="logo-cabeçote100%">
+  </section>
+  <section id="title">
+    <h1>Editar Associações</h1>
+  </section>
+  <section id="form-brand" style="padding-bottom: 30px;">
+    <form action="" method="POST" id="headform">
+      <table style="margin: 0 auto; width: 95%;">
+        <tr>
+          <td style="width: 1%; vertical-align: middle;">Cabeçote:</td>
+          <td><input type="text" class="brand-name exception" placeholder="Busque pelo modelo do carro"
+              id="assHead" name="search"> <input type="submit" value="Ir" class="green btn-go"></td>
+        </tr>
+      </table>
+    </form>
+    <div id="table-result">
+      <table id="table-heads">
+      </table>
+    </div>
+  </section>
+
+  <script src="{{ base_url() }}/js/assoc.js"></script>
+</body>
+
+</html>

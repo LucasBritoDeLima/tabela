@@ -16,6 +16,7 @@ $app->group('/dashboard', function($app){
   $app->map(['GET', 'POST'], '/app/addHeadAdd', 'HeadController:addHead')->setName('dashboard.appHeadAdd');
   $app->map(['GET', 'POST'], '/app/addHead', 'DashboardController:appHead')->setName('dashboard.appHead');
   $app->map(['GET', 'POST'], '/app/addCar', 'CarController:createCar')->setName('car.createCar');
+  $app->map(['GET', 'POST'], '/app/editAssoc', 'CarController:viewAssociation')->setName('car.assoc');
   $app->map(['GET', 'POST'], '/app/EditCar', 'CarController:updateCar')->setName('car.editCar');
   $app->map(['GET', 'POST'], '/app/HeadCar', 'DashboardController:appHeadCar')->setName('dashboard.appHeadCar');
 });
@@ -30,6 +31,8 @@ $app->get('/jointwo', 'CarController:headJoinCar')->setName('getJoins');
 $app->post('/app/edit-car', 'CarController:editCar')->setName('carEdit');
 $app->post('/app/edit-head', 'HeadController:updateHeads')->setName('headEdit');
 $app->post('/app/delete-car', 'CarController:deleteCar')->setName('carDelete');
+$app->post('/app/hide-head', 'CarController:hideAssoc')->setName('hideAssoc');
 $app->post('/app/delete-head', 'HeadController:deleteHead')->setName('headDelete');
 $app->post('/app/search-head', 'HeadController:searchLive')->setName('searchHead');
+$app->post('/app/search-join', 'CarController:searchAssoc')->setName('searchAssoc');
 $app->post('/app/EditarMontadora/sim', 'BrandController:editPostBrand')->setName('mudar');

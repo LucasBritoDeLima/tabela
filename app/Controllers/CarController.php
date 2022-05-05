@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Brand;
 use App\Models\Car;
 use App\Controllers\Controller;
+use App\Models\HeadCar;
 use Respect\Validation\Validator as v;
 
 class CarController extends Controller {
@@ -110,27 +111,40 @@ class CarController extends Controller {
       $data = $data;
     }
 
-
-
-    // if($brandId != null) {
-    //   $data =  Car::where('brands_id', '=', $brandId)->get();
-    // }else{
-    //   $data = [
-    //     "cars" => [
-    //       "brands_id" => "null",
-    //       "name_car" => "Por favor tente mais tarde"
-    //     ]
-    //   ];
-    // }
-
     return $response->withJson($data);
+  }
+
+  public function viewAssociation($request, $response){
+    if($request->isGet())
+    return $this->container->view->render($response, 'edit-head-car.twig'); 
   }
 
   public function headJoinCar($request, $response){
-    $data = $this->container->capsule::select('SELECT cylinder_head.id AS idHead, cylinder_head.name_engine AS cylinderHead, cars.id AS idCar, cars.name_car AS carName, cars_cylinder_head.id AS idJoin, cars_cylinder_head.visible AS isVisible FROM cylinder_head INNER JOIN cars ON (cylinder_head.id = cars.id) INNER JOIN cars_cylinder_head ON (cars.id = cylinder_head.id)');
+    $data = $this->container->capsule::select('SELECT cylinder_head.id as idHead, cylinder_head.name_engine as cylinderHead, cars.id as idCar, cars.name_car as carName, cars_cylinder_head.id as idJoin, cars_cylinder_head.visible as isVisible FROM cars_cylinder_head INNER JOIN cars ON (cars.id = cars_cylinder_head.cars_id) INNER JOIN  cylinder_head ON (cylinder_head.id = cars_cylinder_head.cylinder_head_id) WHERE cars_cylinder_head.visible = 1;');
 
     return $response->withJson($data);
   }
 
+  public function hideAssoc($request, $response){
+    $idJoin = $request->getParam('idJoin');
+
+    $statement = HeadCar::where('id', '=', $idJoin)->update(['visible' => 0]);
+
+    if($statement)
+      return "Excluido com sucesso!";
+  }
+
+  public function searchAssoc($request, $response)
+  {
+    $searchTerm = $request->getParam("search");
+
+    if ($searchTerm) {
+      $data = $this->container->capsule::select("SELECT cylinder_head.id as idHead, cylinder_head.name_engine as cylinderHead, cars.id as idCar, cars.name_car as carName, cars_cylinder_head.id as idJoin, cars_cylinder_head.visible as isVisible FROM cars_cylinder_head INNER JOIN cars ON (cars.id = cars_cylinder_head.cars_id) INNER JOIN  cylinder_head ON (cylinder_head.id = cars_cylinder_head.cylinder_head_id) WHERE cars.name_car LIKE '%".$searchTerm."%' AND cars_cylinder_head.visible = 1;");
+    } else {
+      $data = $this->container->capsule::select('SELECT cylinder_head.id as idHead, cylinder_head.name_engine as cylinderHead, cars.id as idCar, cars.name_car as carName, cars_cylinder_head.id as idJoin, cars_cylinder_head.visible as isVisible FROM cars_cylinder_head INNER JOIN cars ON (cars.id = cars_cylinder_head.cars_id) INNER JOIN  cylinder_head ON (cylinder_head.id = cars_cylinder_head.cylinder_head_id) WHERE cars_cylinder_head.visible = 1;');
+    }
+
+    return $response->withJson($data);
+  }
 
 }

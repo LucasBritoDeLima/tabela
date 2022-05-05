@@ -482,6 +482,26 @@ span {
   background-color: brown!important;
 }
 
+.btn-manage {
+  cursor: pointer;
+  color: #fff;
+  background-color: #6c757d;
+  font-size: 18px;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  border: 1px solid #6c757d;
+  padding: 5px;
+  border-radius: 10px;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-manage:hover {
+  color: #fff;
+  border-color: #545b62;
+  background-color: #5a6268;
+}
+
 @media (max-width: 500px){
   .modal {
     padding: 10px;

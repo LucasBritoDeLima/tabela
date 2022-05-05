@@ -25,27 +25,6 @@ $(document).ready(function () {
   });
 });
 
-// const formElement = document.querySelector("form");
-// formElement.addEventListener("submit", function(event){
-//   event.preventDefault();
-//   let car = document.getElementById("modelCars").value;
-//   let cHead = document.getElementById("cylinderHead").value;
-
-//   $.ajax({
-//     type: 'POST',
-//     url: '/headtocar',
-//     dataType: 'json',
-//     data: { carId: car, headId: cHead},
-//     success: (data) => {
-//       console.log('deu certo');
-//     },
-//     error: (data) => {
-//       console.log(data);
-//     }
-//   })
-// })
-
-
 function loadBrands() {
   $.getJSON("/brands", function (data) {
     let brands = data.brands;
@@ -133,4 +112,3 @@ $("#brands").on("mouseover", () => {
     });
   }
 });
-
