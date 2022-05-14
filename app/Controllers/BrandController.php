@@ -69,11 +69,12 @@ class BrandController extends Controller
     return $response->withJson($data);
   }
 
-  public function getSingleBrand($request, $response) {
+  public function getSingleBrand($request, $response)
+  {
 
     $term = $request->getParam('brand');
     $data = [
-      'brand' => $this->container->capsule::select("SELECT `name` FROM brands WHERE `name` LIKE '%". $term . "%' ORDER BY `name` ASC")
+      'brand' => $this->container->capsule::select("SELECT `name` FROM brands WHERE `name` LIKE '%" . $term . "%' ORDER BY `name` ASC")
     ];
     return $response->write(json_encode($data['brand']));
   }
@@ -100,7 +101,7 @@ class BrandController extends Controller
     $directory = $this->container->upload_directory;
     $brandPicture = $request->getUploadedFiles()['picture'];
     $files = $request->getUploadedFiles();
-    
+
     if (!$brandPicture->getError()) {
       $filename = $this->moveUploadFile($directory, $brandPicture);
 
@@ -119,7 +120,7 @@ class BrandController extends Controller
         if ($validation->failed()) {
           return $response->withRedirect($this->container->router->pathFor('dashboard.appBrandEdit'));
         }
-        Brand::where('id',$id)->update(['name' => $name, 'picture' => $filename]);
+        Brand::where('id', $id)->update(['name' => $name, 'picture' => $filename]);
       } else {
         $this->container->flash->addMessage('error', 'Escolha um formato de arquivo válido');
       }
@@ -129,6 +130,15 @@ class BrandController extends Controller
       $this->container->flash->addMessage('error', 'Houve um erro ao processar a requisição!');
     }
     return $response->withRedirect($this->container->router->pathFor('dashboard.appBrandEdit'));
+  }
+
+  public function getBrandByTerm($request, $response)
+  {
+    $idJoin = $request->getParam('search');
+
+    $statement = Brand::where('name', 'like', '%'.$idJoin.'%')->get();
+
+    return $response->withJson($statement);
   }
 }
 
