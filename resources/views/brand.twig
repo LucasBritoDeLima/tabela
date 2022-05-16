@@ -4,14 +4,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="styles/brand.css">
-  <title>Nome da montadora - TABELA</title>
+  <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/brand.css">
+  <script src="{{ base_url() }}/libs/jquery-3.6.0.min.js"></script>
+  <title>{{ brandName.name }} - TABELA</title>
 </head>
 <body>
+  <div class="overlay">
+    <h1 style="color: white">carregando</h1>
+  </div>
 
   <div id="title">
-    <span><img src="images/left-arrow.svg"></span>
-    <h1>Volkswagen</h1>
+    <span onclick="window.history.back()"><img src="{{ base_url() }}/img/left-arrow.svg"></span>
+    <h1 id="titleBrand">{{ brandName.name }}</h1>
   </div>
 
   <div id="search">
@@ -177,6 +181,6 @@
       </div>
     </div>
   </div>
-
+<script src="{{ base_url() }}/js/brand.js"></script>
 </body>
 </html>

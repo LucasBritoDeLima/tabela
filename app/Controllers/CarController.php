@@ -147,4 +147,17 @@ class CarController extends Controller {
     return $response->withJson($data);
   }
 
+  public function viewDetails($request, $response, $params) {
+
+    $data = [
+      'brandName' => Brand::where('name', '=', $params['brandName'])->first()
+    ];
+    
+    if($data["brandName"]) {
+      return $this->container->view->render($response, 'brand.twig', $data);
+    } else {
+      return $response->withRedirect($this->container->router->pathFor('home'));
+    }
+  }
+
 }

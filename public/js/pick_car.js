@@ -17,7 +17,7 @@ $(document).ready(function () {
           </div>
           <br>
           <hr>
-          <span>${brands[i].name}</span>
+          <span class="brand_name" onclick="itemBrand(this)">${brands[i].name}</span>
         </div>
       `);
     }
@@ -39,15 +39,15 @@ function search() {
       for (let i = 0; i < data.length; i++) {
         console.log(data[i].name);
         divElement.append(`
-          <div class="brand">
-            <div class="img-container">
-              <img src="${urlCurrent}/uploads/${data[i].picture}" alt="brand">
-            </div>
-            <br>
-            <hr>
-            <span>${data[i].name}</span>
+        <div class="brand">
+          <div class="img-container">
+            <img src="${urlCurrent}/uploads/${data[i].picture}" alt="brand">
           </div>
-        `);
+          <br>
+          <hr>
+          <span class="brand_name" onclick="itemBrand(this)">${data[i].name}</span>
+        </div>
+      `);
       }
     },
   });
@@ -56,3 +56,11 @@ function search() {
 $("#text-brand").keyup(() => {
   search();
 });
+
+
+function itemBrand(itemname) {
+  const name = itemname.textContent;
+  console.log(name);
+  let newUrl = window.location.href + name.toLowerCase();
+  window.location.href = newUrl;
+}
