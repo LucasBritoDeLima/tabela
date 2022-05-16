@@ -147,6 +147,14 @@ class CarController extends Controller {
     return $response->withJson($data);
   }
 
+  public function findHeight($request, $response){
+    $searchTerm = $request->getParam("search");
+
+    $data = $this->container->capsule::select("SELECT cylinder_head.name_engine, cylinder_head.standard_height, cylinder_head.minimum_height FROM cars_cylinder_head INNER JOIN cylinder_head ON (cylinder_head.id = cars_cylinder_head.cylinder_head_id) INNER JOIN cars ON (cars.id = cars_cylinder_head.cars_id) WHERE cars_cylinder_head.cars_id = $searchTerm AND cars_cylinder_head.visible = 1;");
+
+    return $response->withJson($data);
+  }
+
   public function viewDetails($request, $response, $params) {
 
     $data = [

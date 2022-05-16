@@ -25,7 +25,7 @@ function loadCars() {
         <div class="accordion__content">
           <hr>
           <div class="information">
-            <table class="table-information">
+            <table class="table-information" id="${stringObject[i].id}">
                 
             </table>
           </div>
@@ -43,17 +43,52 @@ function loadCars() {
 
 function inLoader() {
   $(this).css({ "z-index": 99 });
-  $(".overlay").fadeIn(1000);
+  $(".overlay").fadeIn(100);
 }
 
 function outLoader() {
-  $(".overlay").fadeOut(1000);
+  $(".overlay").fadeOut(100);
   $(this).css({ "z-index": 1 });
 }
 
-
-$(document).on('click', '.accordion__label', function(e){
-  e.preventDefault();
-  var texto = $(this).attr("data-id");
-  alert(texto);
+$(document).on("click", ".accordion__label", function (e) {
+  // e.preventDefault();
+  const id = $(this).attr("data-id");
+  $.ajax({
+    url: "/car/height",
+    type: "post",
+    dataType: "text",
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    data: { search: id },
+    beforeSend: function () {
+      inLoader();
+      outLoader();
+    },
+    success: function (data) {
+      const newValue = JSON.parse(data);
+      console.log(newValue);
+      $("table#" + id).empty();
+      $("table#" + id).append(`
+      <tr class="table-header">
+      <td></td>
+      <td class="text-center small-names">STD</td>
+      <td class="text-center small-names">MIN</td>
+    </tr>
+      `);
+      for (let i = 0; i < newValue.length; i++) {
+        $("table#" + id).append(`
+        <tr class="table-row">
+        <td>${newValue[i].name_engine}</td>
+        <td class="text-center">${newValue[i].standard_height}</td>
+        <td class="text-center">${newValue[i].minimum_height}</td>
+      </tr>
+        `);
+      }
+      // outLoader();
+    },
+    error: function (error) {
+      console.log("erro");
+      console.log(error.responseText);
+    },
+  });
 });
