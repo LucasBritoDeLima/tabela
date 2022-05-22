@@ -38,4 +38,5 @@ $app->post('/app/search-head', 'HeadController:searchLive')->setName('searchHead
 $app->post('/app/search-join', 'CarController:searchAssoc')->setName('searchAssoc');
 $app->post('/app/EditarMontadora/sim', 'BrandController:editPostBrand')->setName('mudar');
 $app->post('/car/height', 'CarController:findHeight');
+$app->post('/car/values', 'CarController:viewCarName');
 $app->get('/{brandName}', 'CarController:viewDetails');

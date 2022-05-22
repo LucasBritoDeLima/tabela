@@ -8,54 +8,57 @@ use App\Controllers\Controller;
 use App\Models\HeadCar;
 use Respect\Validation\Validator as v;
 
-class CarController extends Controller {
-  
-  public function createCar($request, $response) {
+class CarController extends Controller
+{
+
+  public function createCar($request, $response)
+  {
 
     $data = [
       'brands' => Brand::all()
     ];
 
-    if($request->isGet())
+    if ($request->isGet())
       return $this->container->view->render($response, 'add-car.twig', $data);
 
-      $validation = $this->container->validator->validate($request, [
-        'car' => v::stringType()->notEmpty(),
-        'brands' => v::notEmpty()
-      ]);
+    $validation = $this->container->validator->validate($request, [
+      'car' => v::stringType()->notEmpty(),
+      'brands' => v::notEmpty()
+    ]);
 
-      if($validation->failed()){
-        $this->container->flash->addMessage('error', 'Houve um erro ao cadastrar o carro!');
-        return $response->withRedirect($this->container->router->pathFor('car.createCar'));
-      } else {
-        Car::create([
-          'name_car' => $request->getParam('car'),
-          'brands_id' => $request->getParam('brands')
-        ]);
-        $this->container->flash->addMessage('success', 'Carro cadastrado com sucesso!');
-      }
+    if ($validation->failed()) {
+      $this->container->flash->addMessage('error', 'Houve um erro ao cadastrar o carro!');
+      return $response->withRedirect($this->container->router->pathFor('car.createCar'));
+    } else {
+      Car::create([
+        'name_car' => $request->getParam('car'),
+        'brands_id' => $request->getParam('brands')
+      ]);
+      $this->container->flash->addMessage('success', 'Carro cadastrado com sucesso!');
+    }
     return $response->withRedirect($this->container->router->pathFor('car.createCar'));
   }
 
-  public function updateCar($request, $response) {
+  public function updateCar($request, $response)
+  {
 
-    if($request->isGet())
+    if ($request->isGet())
       return $this->container->view->render($response, 'edit-car.twig');
 
     $validation = $this->container->validator->validate($request, [
       'brand' => v::stringType()->notEmpty()
     ]);
 
-    if($validation->failed()) {
+    if ($validation->failed()) {
       $this->container->flash->addMessage('error', 'Houve um erro ao consultar a montadora');
       return $response->withRedirect($this->container->router->pathFor('car.editCar'));
     } else {
-      
     }
   }
 
-  public function findCarsById($request, $response){
-    
+  public function findCarsById($request, $response)
+  {
+
     $nameBrand = $request->getParam("name");
 
     $idBrand = $this->container->capsule::table('brands')->where('name', '=', $nameBrand)->first();
@@ -67,7 +70,8 @@ class CarController extends Controller {
     return $response->write(json_encode($namesCar));
   }
 
-  public function editCar($request, $response) {
+  public function editCar($request, $response)
+  {
     $nameCar = $request->getParam("newName");
     $id = $request->getParam("nameOriginal");
 
@@ -76,61 +80,66 @@ class CarController extends Controller {
       'nameOriginal' => v::notEmpty()
     ]);
 
-    if ($validation->failed()){
+    if ($validation->failed()) {
       $this->container->flash->addMessage('error', 'Houve um erro ao processar a requisição!');
     }
-    Car::where('id',$id)->update(['name_car' => $nameCar]);
+    Car::where('id', $id)->update(['name_car' => $nameCar]);
     $this->container->flash->addMessage('success', 'Nome do modelo de carro editado com sucesso!');
   }
 
-  public function deleteCar($request, $response) {
+  public function deleteCar($request, $response)
+  {
     $idCar = $request->getParam("id");
 
     $car = Car::find($idCar);
-    
-    if($car) {
+
+    if ($car) {
       $car->delete();
     } else {
       $this->container->flash->addMessage('danger', 'Erro: O carro não pode ser deletado!');
     }
   }
 
-  public function getCarById($request, $response){
+  public function getCarById($request, $response)
+  {
     $brandId = $request->getParam("id");
-    
+
     $data =  Car::where('brands_id', '=', $brandId)->get();
 
-    if(empty($data)){
+    if (empty($data)) {
       $data = [
         [
           "id" => null,
           "name_car" => "Não existem carros para esta montadora"
         ]
       ];
-    }else {
+    } else {
       $data = $data;
     }
 
     return $response->withJson($data);
   }
 
-  public function viewAssociation($request, $response){
-    if($request->isGet())
-    return $this->container->view->render($response, 'edit-head-car.twig'); 
+  public function viewAssociation($request, $response)
+  {
+    if ($request->isGet())
+      return $this->container->view->render($response, 'edit-head-car.twig');
   }
 
-  public function headJoinCar($request, $response){
+  public function headJoinCar($request, $response)
+  {
     $data = $this->container->capsule::select('SELECT cylinder_head.id as idHead, cylinder_head.name_engine as cylinderHead, cars.id as idCar, cars.name_car as carName, cars_cylinder_head.id as idJoin, cars_cylinder_head.visible as isVisible FROM cars_cylinder_head INNER JOIN cars ON (cars.id = cars_cylinder_head.cars_id) INNER JOIN  cylinder_head ON (cylinder_head.id = cars_cylinder_head.cylinder_head_id) WHERE cars_cylinder_head.visible = 1;');
 
     return $response->withJson($data);
   }
 
-  public function hideAssoc($request, $response){
+  public function hideAssoc($request, $response)
+  {
     $idJoin = $request->getParam('idJoin');
 
     $statement = HeadCar::where('id', '=', $idJoin)->update(['visible' => 0]);
 
-    if($statement)
+    if ($statement)
       return "Excluido com sucesso!";
   }
 
@@ -139,7 +148,7 @@ class CarController extends Controller {
     $searchTerm = $request->getParam("search");
 
     if ($searchTerm) {
-      $data = $this->container->capsule::select("SELECT cylinder_head.id as idHead, cylinder_head.name_engine as cylinderHead, cars.id as idCar, cars.name_car as carName, cars_cylinder_head.id as idJoin, cars_cylinder_head.visible as isVisible FROM cars_cylinder_head INNER JOIN cars ON (cars.id = cars_cylinder_head.cars_id) INNER JOIN  cylinder_head ON (cylinder_head.id = cars_cylinder_head.cylinder_head_id) WHERE cars.name_car LIKE '%".$searchTerm."%' AND cars_cylinder_head.visible = 1;");
+      $data = $this->container->capsule::select("SELECT cylinder_head.id as idHead, cylinder_head.name_engine as cylinderHead, cars.id as idCar, cars.name_car as carName, cars_cylinder_head.id as idJoin, cars_cylinder_head.visible as isVisible FROM cars_cylinder_head INNER JOIN cars ON (cars.id = cars_cylinder_head.cars_id) INNER JOIN  cylinder_head ON (cylinder_head.id = cars_cylinder_head.cylinder_head_id) WHERE cars.name_car LIKE '%" . $searchTerm . "%' AND cars_cylinder_head.visible = 1;");
     } else {
       $data = $this->container->capsule::select('SELECT cylinder_head.id as idHead, cylinder_head.name_engine as cylinderHead, cars.id as idCar, cars.name_car as carName, cars_cylinder_head.id as idJoin, cars_cylinder_head.visible as isVisible FROM cars_cylinder_head INNER JOIN cars ON (cars.id = cars_cylinder_head.cars_id) INNER JOIN  cylinder_head ON (cylinder_head.id = cars_cylinder_head.cylinder_head_id) WHERE cars_cylinder_head.visible = 1;');
     }
@@ -147,7 +156,8 @@ class CarController extends Controller {
     return $response->withJson($data);
   }
 
-  public function findHeight($request, $response){
+  public function findHeight($request, $response)
+  {
     $searchTerm = $request->getParam("search");
 
     $data = $this->container->capsule::select("SELECT cylinder_head.name_engine, cylinder_head.standard_height, cylinder_head.minimum_height FROM cars_cylinder_head INNER JOIN cylinder_head ON (cylinder_head.id = cars_cylinder_head.cylinder_head_id) INNER JOIN cars ON (cars.id = cars_cylinder_head.cars_id) WHERE cars_cylinder_head.cars_id = $searchTerm AND cars_cylinder_head.visible = 1;");
@@ -155,17 +165,37 @@ class CarController extends Controller {
     return $response->withJson($data);
   }
 
-  public function viewDetails($request, $response, $params) {
+  public function viewDetails($request, $response, $params)
+  {
 
     $data = [
       'brandName' => Brand::where('name', '=', $params['brandName'])->first()
     ];
-    
-    if($data["brandName"]) {
+
+    if ($data["brandName"]) {
       return $this->container->view->render($response, 'brand.twig', $data);
     } else {
       return $response->withRedirect($this->container->router->pathFor('home'));
     }
   }
 
+  public function viewCarName($request, $response)
+  {
+    $brandName = $request->getParam("brandName");
+    $carName = $request->getParam("nameCar");
+
+    $brand = $this->container->capsule::select("SELECT id FROM brands WHERE `name` = '$brandName'");
+
+    $idBrand = $brand[0]->id;
+     
+    $data = null;
+
+    if (empty($carName)) {
+      $data = $this->container->capsule::select("SELECT * FROM cars WHERE brands_id = $idBrand");
+    } else {
+      $data = $this->container->capsule::select("SELECT * FROM cars WHERE name_car LIKE '%$carName%' AND brands_id = $idBrand");
+    }
+
+    return $response->withJson($data);
+  }
 }

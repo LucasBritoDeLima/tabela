@@ -210,3 +210,16 @@ td:first-child {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 99;
 }
+
+@media only screen and (max-width: 960px){ 
+  #search form{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #search form input{ 
+    width: 90%;
+  }
+}

@@ -92,3 +92,47 @@ $(document).on("click", ".accordion__label", function (e) {
     },
   });
 });
+
+function loadData(){
+  const brandName = $("#titleBrand").html();
+  const searchTerm = document.getElementById("searchTerm").value;
+  $.ajax({
+    url: "/car/values",
+    type: "POST",
+    dataType: "text",
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    data: { brandName: brandName, nameCar: searchTerm},
+    beforeSend: function () {
+    },
+    success: function (data) {
+      const divElement = $(".accordion");
+      divElement.empty();
+      var stringObject = JSON.parse(data);
+      console.log(stringObject);
+      for (let i = 0; i < stringObject.length; i++) {
+        divElement.append(`
+        <div class="altern">
+        <input type="checkbox" name="example_accordion" id="section${stringObject[i].name_car}" class="accordion__input">
+        <label for="section${stringObject[i].name_car}" class="accordion__label" data-id="${stringObject[i].id}">${stringObject[i].name_car}</label>
+        <div class="accordion__content">
+          <hr>
+          <div class="information">
+            <table class="table-information" id="${stringObject[i].id}">
+                
+            </table>
+          </div>
+        </div>
+      </div>
+        `);
+      }
+    },
+    error: function (error) {
+      console.log("erro");
+      // console.log(error.responseText);
+    },
+  });
+}
+
+$("#searchTerm").keyup(function(){
+  loadData();
+});
