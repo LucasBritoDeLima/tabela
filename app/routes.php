@@ -1,12 +1,15 @@
 <?php
 
+use App\Middleware\AuthMiddleware;
+
 $app->get('/', 'HomeController:index')->setName('home');
 
 $app->group('/auth', function($app){
   $app->map(['GET', 'POST'], '/login', 'AuthController:login')->setName('auth.login');
-  $app->map(['GET', 'POST'], '/registrar', 'AuthController:register')->setName('auth.register');
   $app->get('/logout', 'AuthController:logout')->setName('auth.logout');
 });
+
+$app->map(['GET', 'POST'], '/auth/registrar', 'AuthController:register')->setName('auth.register')->add(new AuthMiddleware($container));
 
 $app->group('/dashboard', function($app){
   $app->map(['GET', 'POST'], '/home', 'DashboardController:dashboard')->setName('dashboard.home');
@@ -19,7 +22,7 @@ $app->group('/dashboard', function($app){
   $app->map(['GET', 'POST'], '/app/editAssoc', 'CarController:viewAssociation')->setName('car.assoc');
   $app->map(['GET', 'POST'], '/app/EditCar', 'CarController:updateCar')->setName('car.editCar');
   $app->map(['GET', 'POST'], '/app/HeadCar', 'DashboardController:appHeadCar')->setName('dashboard.appHeadCar');
-});
+})->add(new AuthMiddleware($container));
 
 $app->get('/brands', 'BrandController:getBrand')->setName('getBrand');
 $app->get('/brand', 'BrandController:getSingleBrand')->setName('getSingleBrand');
