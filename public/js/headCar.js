@@ -16,7 +16,8 @@ $(document).ready(function () {
       },
       cache: false,
       success: function(data){
-        console.log(data);
+        alert("Cabeçote associado ao carro com sucesso!");
+        document.location.reload(true);
       },
       error: function(xhr, status, error){
         console.error(xhr);

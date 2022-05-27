@@ -18,19 +18,19 @@ class HeadController extends Controller
     $validation = $this->container->validator->validate($request, [
       'fuel' => v::length(3)->stringType()->notEmpty(),
       'material' => v::length(5)->stringType()->notEmpty(),
-      'engine-name' => v::length(5)->stringType()->notEmpty(),
+      'engine-name' => v::length(2)->stringType()->notEmpty(),
       'height-std' => v::length(3)->stringType()->notEmpty(),
       'min-height' => v::length(3)->stringType()->notEmpty(),
       'observation' => v::stringType(),
     ]);
 
     if ($validation->failed())
-      return $response->withRedirect($this->container->router->pathFor('dashboard.appHeadAdd'));
-    /*echo "<pre>";
-      print_r($validation);
-      echo "</pre>";
-      die();*/
-
+    return $response->withRedirect($this->container->router->pathFor('dashboard.appHeadAdd'));
+    // echo "<pre>";
+    // print_r($validation);
+    // echo "</pre>";
+    // die();
+    
     Head::create([
       'fuel' => $request->getParam('fuel'),
       'material_kind' => $request->getParam('material'),
